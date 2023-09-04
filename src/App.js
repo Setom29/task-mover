@@ -2,8 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React, { useState } from 'react';
-import Home from './components/Login';
+import Login from './components/Login';
+import WorkSpace from './components/WorkSpace';
 import theme from "./themes";
+import { ThemeProvider } from '@mui/material';
 
 function App() {
   return (
