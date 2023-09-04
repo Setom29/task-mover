@@ -1,20 +1,49 @@
 import { computed, action, makeAutoObservable, makeObservable, observable } from 'mobx'
 import {arr} from './dummy'
 
-
-export class Users {
+export class DataTable {
     constructor() {
         this.lastId = 0;
+        this.data = [];
+        this.currentId = 0;
+
+        // maybe also in parent class but so far - in each class its own
+        // makeObservable(this, {
+        //     data: observable,
+        //     currentId: observable,
+        //     changeCurrentUser: action,
+        //     currentUser: computed
+        // })
+    }
+
+    get currentItem() {
+        console.log("currentItem ", this.currentId)
+        return this.data.find(item => item.id === this.currentId);
+    }
+
+    getItemById(id) {
+        console.log("getItemById ", id)
+        return this.data.find(item => item.id === id);
+    }
+
+    changeCurrentItemId(id) {
+        this.currentId = id;
+        console.log("changeCurrentItemId ", id)
+    }
+}
+
+export class Users extends DataTable {
+    constructor() {
+        super();
         this.data = arr;
         this.currentId = this.data[0].id;
-
-        // makeAutoObservable(this);
+        this.lastId = this.data[this.data.length-1].id;
 
         makeObservable(this, {
             data: observable,
             currentId: observable,
-            changeCurrentUser: action,
-            currentUser: computed
+            changeCurrentItemId: action,
+            currentItem: computed
         })
     }
 
@@ -27,18 +56,8 @@ export class Users {
             email: email,
             password: password
         })
+        console.log("addUser")
 
     }
 
-    get currentUser() {
-        return this.data.find(u => u.id === this.currentId);
-    }
-
-    getUserById(id) {
-        return this.data.find(u => u.id === id);
-    }
-
-    changeCurrentUser(id) {
-        this.currentId = id;
-    }
 }
