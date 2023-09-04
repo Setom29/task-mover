@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { Provider } from 'mobx-react'
-import { Users } from './stores/store';
+import { UsersTable } from './stores/store';
+import { BoardsTable } from './stores/boards';
+import { UsersInBoardsTable } from './stores/usersInBoards';
 
-const users = new Users();
+const users = new UsersTable();
+const usersInBoards = new UsersInBoardsTable();
+const boards = new BoardsTable(usersInBoards);
 
-const stores = {users}; 
+const stores = {users, boards, usersInBoards}; 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
