@@ -2,6 +2,7 @@ import { Button, IconButton, TextareaAutosize } from "@mui/material";
 import { Box } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
+import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
 
@@ -21,6 +22,8 @@ const AddCardComponent = inject(
           backgroundColor: "darkgray",
           width: "100%",
           heigth: "1em",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         {open ? (
@@ -29,28 +32,37 @@ const AddCardComponent = inject(
               onChange={(e) => setNewCardName(e.target.value)}
               value={newCardName}
             />
-            <Button
-              variant="contained"
-              endIcon={<SendIcon />}
-              onClick={() => {
-                props.cardsTable.addCard(
-                  newCardName,
-                  props.cardListId,
-                  props.users.currentItem
-                );
-                setOpen(false);
-                setNewCardName("")
-              }}
-            ></Button>
+            <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+              <IconButton
+                variant="contained"
+                disabled={newCardName === ""}
+                onClick={() => {
+                  props.cardsTable.addCard(
+                    newCardName,
+                    props.cardListId,
+                    props.users.currentItem
+                  );
+                  setOpen(false);
+                  setNewCardName("");
+                }}
+              >
+                <SendIcon />
+              </IconButton>
+              <IconButton
+                variant="contained"
+                onClick={() => {
+                  setOpen(false);
+                  setNewCardName("");
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
           </Box>
         ) : (
-          <Button
-            variant="contained"
-            endIcon={<AddCircleOutlineIcon />}
-            onClick={() => setOpen(true)}
-          >
-            Add new card
-          </Button>
+          <IconButton variant="contained" onClick={() => setOpen(true)}>
+            <AddCircleOutlineIcon />
+          </IconButton>
         )}
       </Box>
     );
@@ -58,9 +70,3 @@ const AddCardComponent = inject(
 );
 
 export default AddCardComponent;
-
-// props.cardsTable.addCard(
-//     "New card",
-//     props.cardListId,
-//     props.users.currentItem
-//   )
