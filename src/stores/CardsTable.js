@@ -5,8 +5,8 @@ import {
   makeObservable,
   observable,
 } from "mobx";
-import { DataTable } from "./store";
-import { initialCardsData } from "./dummy";
+import { DataTable } from "./DataTable";
+import { initialCardsData } from "./initialData";
 
 export default class CardsTable extends DataTable {
   constructor() {
@@ -62,7 +62,7 @@ export default class CardsTable extends DataTable {
     }
   }
 
-  deleteCard(id){
-    this.data = this.data.filter((card) => card.id !== id)
+  deleteCard(id) {
+    this.data = this.data.filter((card) => card.id !== id);
   }
 }

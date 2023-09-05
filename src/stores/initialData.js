@@ -1,4 +1,4 @@
-export const arr = [
+export const initialUsersData = [
   {
     id: 1,
     name: "Alice",
@@ -20,6 +20,21 @@ export const arr = [
     email: "eve.davis@example.com",
     password: "evesPassword",
   },
+];
+
+export const initialUsersInBoardsData = [
+  { id: 1, userId: 1, boardId: 1 },
+  { id: 2, userId: 2, boardId: 1 },
+  { id: 3, userId: 3, boardId: 1 }, // all users see Board 1
+  { id: 4, userId: 2, boardId: 2 },
+  { id: 5, userId: 3, boardId: 2 }, // users 2 and 3 see Board 2
+  { id: 6, userId: 3, boardId: 3 }, // only user3 sees Board 3
+];
+
+export const initialBoardsData = [
+  { id: 1, name: "Board 1", createdBy: 1 },
+  { id: 2, name: "Board 2", createdBy: 2 },
+  { id: 3, name: "Board 3", createdBy: 3 },
 ];
 
 export const initialCardListsData = [

@@ -5,8 +5,8 @@ import {
   makeObservable,
   observable,
 } from "mobx";
-import { DataTable } from "./store";
-import { initialCardListsData } from "./dummy";
+import { DataTable } from "./DataTable";
+import { initialCardListsData } from "./initialData";
 
 export default class CardListsTable extends DataTable {
   constructor() {
@@ -48,7 +48,7 @@ export default class CardListsTable extends DataTable {
       console.error("Invalid field");
     }
   }
-  deletCardList(id){
-    this.data = this.data.filter((cardList) => cardList.id !== id)
+  deletCardList(id) {
+    this.data = this.data.filter((cardList) => cardList.id !== id);
   }
 }

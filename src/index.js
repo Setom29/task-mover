@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { Provider  } from 'mobx-react'
-import { UsersTable } from './stores/store';
-import { BoardsTable } from './stores/boards';
-import { UsersInBoardsTable } from './stores/usersInBoards';
+import { UsersTable } from './stores/UsersTable';
+import { BoardsTable } from './stores/BoardsTable';
+import { UsersInBoardsTable } from './stores/UsersInBoardsTable';
 import CardListsTable from './stores/CardListsTable';
 import CardsTable from './stores/CardsTable';
 
