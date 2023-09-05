@@ -1,4 +1,4 @@
-import { computed, action, makeAutoObservable, makeObservable, observable } from 'mobx'
+import {observable, computed, action, makeObservable} from 'mobx'
 import {arr} from './dummy'
 
 export class DataTable {
@@ -32,11 +32,11 @@ export class DataTable {
     }
 }
 
-export class Users extends DataTable {
+export class UsersTable extends DataTable {
     constructor() {
         super();
         this.data = arr;
-        this.currentId = this.data[0].id;
+        this.currentId = this.data[2].id;
         this.lastId = this.data[this.data.length-1].id;
 
         makeObservable(this, {

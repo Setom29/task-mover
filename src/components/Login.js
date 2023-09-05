@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import { Link } from 'react-router-dom'
 
 const Login = inject("users")(observer((props) => {
   // props.users.....
@@ -10,8 +11,8 @@ const Login = inject("users")(observer((props) => {
   return (
     <div>
       <h1>Login</h1>
-      <p>{JSON.stringify(props.users.currentItem)}</p>
-      <input type="number" onChange={changeCurrentUser}></input>
+      <Link to="/workspace"><p>{JSON.stringify(props.users.currentItem)}</p></Link>
+      <input type="number" id="currentUserIdInput" onChange={changeCurrentUser} value={props.users.currentId}></input>
     </div>
   )
 }))

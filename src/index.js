@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { Provider  } from 'mobx-react'
-import { Users } from './stores/store';
+import { UsersTable } from './stores/store';
+import { BoardsTable } from './stores/boards';
+import { UsersInBoardsTable } from './stores/usersInBoards';
 import CardListsTable from './stores/CardListsTable';
 import CardsTable from './stores/CardsTable';
 
-const users = new Users();
+const users = new UsersTable();
+const usersInBoards = new UsersInBoardsTable();
+const boards = new BoardsTable(usersInBoards);
 const cardListsTable = new CardListsTable();
 const cardsTable = new CardsTable();
 
-const stores = {users, cardListsTable, cardsTable}; 
+const stores = {users, boards, usersInBoards, cardListsTable, cardsTable}; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
