@@ -32,12 +32,14 @@ export const initialUsersInBoardsData = [
 ];
 
 export const initialBoardsData = [
+    //не name, а title
   { id: 1, name: "Board 1", createdBy: 1 },
   { id: 2, name: "Board 2", createdBy: 2 },
   { id: 3, name: "Board 3", createdBy: 3 },
 ];
 
 export const initialCardListsData = [
+    //name это status
   { id: 1, name: "To Do", order: 0, boardId: 1 },
   { id: 2, name: "In Progress", order: 1, boardId: 1 },
   { id: 3, name: "In Review", order: 2, boardId: 1 },
@@ -53,6 +55,7 @@ export const initialCardListsData = [
 ];
 export const initialCardsData = [
   {
+    //не name, а task
     id: 1,
     name: "task1",
     description: "d1",
@@ -152,3 +155,26 @@ export const initialCardsData = [
     assignee: 2,
   },
 ];
+
+export const initialComments = [
+  {
+    id: 1,
+    text: "Comment",
+    created_at: "",
+    user_id: 1,
+    card_id: 1
+
+  },
+  {
+    id: 2,
+    text: "Comment",
+    created_at: "",
+    user_id: 2,
+    card_id: 1
+
+  }
+]
+
+export const initialCommentsList = [
+   { listId: 1, card_id: 1, commentsListLength: 2 },
+]
