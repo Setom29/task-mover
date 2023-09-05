@@ -5,6 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
+import Divider from '@mui/material/Divider';
+import { Stack } from '@mui/system';
 
 const Users = inject("usersTable")(observer((props) => {
   // props.users.....
@@ -16,31 +18,28 @@ const Users = inject("usersTable")(observer((props) => {
   return (
     
     <Card variant="outlined" sx={{ width: 400 }} >
-      <CardContent>
-        <Typography gutterBottom variant="h2" component="div" >
+      <CardContent >
+        <Typography gutterBottom variant="h5" component="div" >
           choose user
         </Typography>
-        <CardActions>
-          {usersY.map((user) => { 
-          return <>
-            {user.id}
-            <a href='/workspace'>
-                <Button onClick={changeCurrentUser} value={user.id} variant="outlined" size="small">
-                    {JSON.stringify(user.name)}
-                </Button>
-            </a>
-          </>
-          })}
-        </CardActions>
-   
+        <Stack 
+        spacing={2} 
+        direction="column"
+        justifyContent="center"
+        alignItems="center">
+            {usersY.map((user) => { 
+            return <a href='/workspace'>
+                    <Button onClick={changeCurrentUser} value={user.id} variant="outlined" size="small">
+                        {JSON.stringify(user.name)}
+                    </Button>
+                </a>
+            })}
+        </Stack>
       </CardContent>
       <input type="number" id="currentUserIdInput" onChange={changeCurrentUser} value={props.usersTable.currentId}></input>
 
     </Card>
-       
-      
   )
-  
 })
 )
 export default Users;

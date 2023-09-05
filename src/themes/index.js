@@ -16,6 +16,19 @@ const theme = createTheme({
       dark: grey[400],
       contrastText: "rgba(0, 0, 0, 0.54)",
   },
+  components: {
+    Cards: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
+      },
+    },
+  },
   },
 });
 
