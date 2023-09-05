@@ -36,8 +36,6 @@ const Users = inject("usersTable")(observer((props) => {
             })}
         </Stack>
       </CardContent>
-      <input type="number" id="currentUserIdInput" onChange={changeCurrentUser} value={props.usersTable.currentId}></input>
-
     </Card>
   )
 })
