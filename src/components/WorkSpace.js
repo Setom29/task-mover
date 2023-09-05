@@ -5,13 +5,13 @@ import Board from './board/Board'
 import AppBarHeader from './appBar/AppBar'
 import { inject, observer } from 'mobx-react'
 
-const WorkSpace = inject("usersTable")(observer((props) => {
+const WorkSpace = inject("usersTable", "boardsTable")(observer((props) => {
   return (
    <Box>
         <div>WorkSpace</div>
         <AppBarHeader/>
         <SideNavBar />
-        <Board />
+        <Board boardId={props.boardsTable.currentId}/>
     </Box>
   )
 }))

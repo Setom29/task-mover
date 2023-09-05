@@ -6,10 +6,22 @@ import CardList from "./CardList";
 const Board = inject("cardListsTable")(
   observer((props) => {
     return (
-      <Box>
-        <div>BoardHeader</div>
-        <CardList />
-        {/* map */}
+      <Box
+        sx={{
+          display: "flex",
+          gap: "5px",
+        }}
+      >
+      {/* filter cardLists by boardId and display them in the correct order */}
+        {[
+          ...props.cardListsTable.data.filter(
+            (cardList) => cardList.boardId === props.boardId
+          ),
+        ]
+          .sort((a, b) => a.order < b.order)
+          .map((cardList) => (
+            <CardList cardListId={cardList.id} />
+          ))}
       </Box>
     );
   })

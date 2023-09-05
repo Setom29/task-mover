@@ -1,6 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Card from "./Card";
 import AddCardComponent from "./AddCardComponent ";
 // {cardListId, users, setUsers, cardLists, setCardLists, cards, setCards, comments, setComments}
@@ -22,12 +22,20 @@ const CardList = inject(
           backgroundColor: "rgba(0, 0, 0, 0.4)",
         }}
       >
-        {props.cardsTable.data
-          .filter((card) => card.cardListId === props.cardListId)
+        <Typography>
+          {props.cardListsTable.getItemById(props.cardListId).name}
+        </Typography>
+        {/* filter cards by cardListId and display them in the correct order */}
+        {[
+          ...props.cardsTable.data.filter(
+            (card) => card.cardListId === props.cardListId
+          ),
+        ]
+          .sort((a, b) => a.order < b.order)
           .map((card, index) => (
             <Card key={index} cardId={card.id} />
           ))}
-        <AddCardComponent cardListId={props.cardListId}/>
+        <AddCardComponent cardListId={props.cardListId} />
       </Box>
     );
   })
