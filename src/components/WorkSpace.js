@@ -5,7 +5,7 @@ import Board from './board/Board'
 import AppBarHeader from './appBar/AppBar'
 import { inject, observer } from 'mobx-react'
 
-const WorkSpace = inject("users")(observer((props) => {
+const WorkSpace = inject("usersTable")(observer((props) => {
   return (
    <Box>
         <div>WorkSpace</div>

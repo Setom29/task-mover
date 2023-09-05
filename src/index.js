@@ -9,13 +9,13 @@ import { UsersInBoardsTable } from './stores/UsersInBoardsTable';
 import CardListsTable from './stores/CardListsTable';
 import CardsTable from './stores/CardsTable';
 
-const users = new UsersTable();
-const usersInBoards = new UsersInBoardsTable();
-const boards = new BoardsTable(usersInBoards);
+const usersTable = new UsersTable();
+const usersInBoardsTable = new UsersInBoardsTable();
+const boardsTable = new BoardsTable(usersInBoardsTable);
 const cardListsTable = new CardListsTable();
 const cardsTable = new CardsTable();
 
-const stores = {users, boards, usersInBoards, cardListsTable, cardsTable}; 
+const stores = {usersTable, boardsTable, usersInBoardsTable, cardListsTable, cardsTable}; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

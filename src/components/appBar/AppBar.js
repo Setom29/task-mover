@@ -2,7 +2,7 @@ import { observer, inject } from 'mobx-react'
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import BoardsSelect from './BoardsSelect';
 
-const AppBarHeader = inject("users")(observer((props) => {
+const AppBarHeader = inject("usersTable")(observer((props) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -13,7 +13,7 @@ const AppBarHeader = inject("users")(observer((props) => {
           </Typography>
           <BoardsSelect/>
           <Typography variant="h6" component="div" edge="end" sx={{ flexGrow: 1 }}>
-            User: {props.users.currentItem.name}
+            User: {props.usersTable.currentItem.name}
           </Typography>
         </Toolbar>
       </AppBar>
