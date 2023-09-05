@@ -174,7 +174,3 @@ export const initialComments = [
 
   }
 ]
-
-export const initialCommentsList = [
-   { listId: 1, card_id: 1, commentsListLength: 2 },
-]
