@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const AddCardComponent = inject(
   "cardsTable",
-  "users"
+  "usersTable"
 )(
   observer((props) => {
     const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ const AddCardComponent = inject(
                   props.cardsTable.addCard(
                     newCardName,
                     props.cardListId,
-                    props.users.currentItem
+                    props.usersTable.currentItem
                   );
                   setOpen(false);
                   setNewCardName("");
