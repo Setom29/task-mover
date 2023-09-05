@@ -8,7 +8,6 @@ import { inject, observer } from 'mobx-react'
 const WorkSpace = inject("usersTable", "boardsTable")(observer((props) => {
   return (
    <Box>
-        <div>WorkSpace</div>
         <AppBarHeader/>
         <SideNavBar />
         <Board boardId={props.boardsTable.currentId}/>

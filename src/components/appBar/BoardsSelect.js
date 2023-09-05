@@ -26,7 +26,7 @@ const BoardsSelect = inject("boardsTable", "usersTable", "usersInBoardsTable")(o
                     .map(b => <MenuItem value={b.id} key={b.id}>{b.name}</MenuItem>)}
             </Select>
         </FormControl>
-         );
+    );
 }))
 
 export default BoardsSelect;
