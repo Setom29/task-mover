@@ -60,7 +60,7 @@ const AddBoardComponent = inject(
             </Box>
           </Box>
         ) : (
-          <IconButton variant="contained" onClick={() => setOpen(true)}>
+          <IconButton variant="contained" onClick={() => setOpen(true)} sx={{aspectRatio: "1/1"}}>
             <AddCircleOutlineIcon />
           </IconButton>
         )}
