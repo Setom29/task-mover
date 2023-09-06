@@ -21,7 +21,7 @@ export default class CommentTable extends DataTable {
 
     }
 
-    addComment(text, user_id, card_id ) {
+    addComment(text, user_id, card_id) {
         console.log("addComment")
         this.lastId++
         this.data.push({
