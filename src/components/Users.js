@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,12 +15,12 @@ const Users = inject("usersTable")(observer((props) => {
       console.log(e.target.value)
     props.usersTable.changeCurrentItemId(Number(e.target.value))
   }
-  let usersY = [...props.usersTable.data]
+  let users = [...props.usersTable.data]
   return (
     
     <Card variant="outlined" sx={{ width: 400 }} >
       <CardContent >
-        <Typography gutterBottom variant="h5" component="div" >
+        <Typography sx={{ textAlign: 'center' }} variant="h5" component="div">
           choose user
         </Typography>
         <Stack 
@@ -27,12 +28,12 @@ const Users = inject("usersTable")(observer((props) => {
         direction="column"
         justifyContent="center"
         alignItems="center">
-            {usersY.map((user) => { 
-            return <a href='/workspace'>
+            {users.map((user) => { 
+            return <Link to='/workspace'>
                     <Button onClick={changeCurrentUser} value={user.id} variant="outlined" size="small">
                         {JSON.stringify(user.name)}
                     </Button>
-                </a>
+                </Link>
             })}
         </Stack>
       </CardContent>
