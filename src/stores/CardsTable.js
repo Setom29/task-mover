@@ -21,8 +21,8 @@ export default class CardsTable extends DataTable {
       changeCurrentItemId: action,
       currentItem: computed,
       addCard: action,
-      editCard: action,
       deleteCard: action,
+      editItem: action,
     });
   }
 
@@ -40,26 +40,6 @@ export default class CardsTable extends DataTable {
       dueTo: dueTo,
       assignee: null,
     });
-  }
-
-  editCard(id, field, value, order = null) {
-    console.log("editCard ", id);
-    let tempCard = this.getItemById(id);
-    if (field === "name") {
-      tempCard.name = value;
-    } else if (field === "description") {
-      tempCard.description = value;
-    } else if (field === "cardListId" && order !== null) {
-      tempCard.cardListId = value;
-    } else if (field === "order") {
-      console.log("ToDo");
-    } else if (field === "dueTo") {
-      tempCard.dueTo = value;
-    } else if (field === "assignee") {
-      tempCard.assignee = value;
-    } else {
-      console.error("Invalid field");
-    }
   }
 
   deleteCard(id) {

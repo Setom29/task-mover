@@ -21,13 +21,24 @@ export class DataTable {
   }
 
   getItemById(id) {
-    console.log("getItemById ", id);
-    console.log(this)
     return this.data.find((item) => item.id === id);
   }
 
   changeCurrentItemId(id) {
     this.currentId = id;
     console.log("changeCurrentItemId ", id);
+  }
+
+  // editItem(newItem) {
+  //   const itemIndex = this.data.findIndex((item) => item.id === newItem.id)
+  //   for (let field in this.data[itemIndex]) {
+  //     console.log(field)
+  //     this.data[itemIndex][field] = newItem[field]
+  //   }
+  // }
+
+  editItem(newItem) {
+    this.data = this.data.filter((item) => item.id !== newItem.id);
+    this.data.push(newItem)
   }
 }

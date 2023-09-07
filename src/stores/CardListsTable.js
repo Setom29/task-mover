@@ -21,8 +21,8 @@ export default class CardListsTable extends DataTable {
       changeCurrentItemId: action,
       currentItem: computed,
       addCardList: action,
-      editCardList: action,
       deleteCardList: action,
+      editItem: action,
     });
   }
 
@@ -37,18 +37,7 @@ export default class CardListsTable extends DataTable {
       boardId: boardId,
     });
   }
-
-  editCardList(cardListId, field, value) {
-    console.log("editCardList");
-    let tempCardList = this.getItemById(cardListId);
-    if (field === "name") {
-      tempCardList.name = value;
-    } else if (field === "order") {
-      console.log("ToDo");
-    } else {
-      console.error("Invalid field");
-    }
-  }
+  
   deleteCardList(id) {
     this.data = this.data.filter((cardList) => cardList.id !== id);
   }

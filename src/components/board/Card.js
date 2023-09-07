@@ -4,14 +4,14 @@ import {Typography, Box} from "@mui/material";
 import CardModal from "../cardModal/CardModal";
 import {Link} from "react-router-dom";
 
-const Card = inject("cardsTable")(
+const Card = inject("cardsTable", "modalStateStore")(
   observer((props) => {
     
-    const {open, toggle} = props.modalStateStore
-    const {name, description, createdAt, createdBy, assignee} = props.cardsTable.getItemById(props.cardId)
+    const {open, toggle} = props.modalStateStore;
+    // const {name, description, createdAt, createdBy, assignee} = props.cardsTable.getItemById(props.cardId)
     
     return (
-      <Box onClick={() => toggle(props.cardId)
+      <Box onClick={() => toggle(props.cardId)}
         sx={{
           padding: "5px",
           borderRadius: "5px",

@@ -15,8 +15,9 @@ export default class CommentTable extends DataTable {
             changeCurrentItemId: action,
             currentItem: computed,
             addComment: action,
-            editComment: action,
+            // editComment: action,
             deleteComment: action,
+            editItem: action,
         })
 
     }
@@ -33,11 +34,11 @@ export default class CommentTable extends DataTable {
         })
     }
 
-    //,user_id, card_id, нужно добавить в параметры в дальнейшем при расширении на множество таблиц.
-    editComment(id, text) {
-        console.log("editeComment")
-        this.currentItem.text = text
-    }
+    // //,user_id, card_id, нужно добавить в параметры в дальнейшем при расширении на множество таблиц.
+    // editComment(id, text) {
+    //     console.log("editeComment")
+    //     this.currentItem.text = text
+    // }
 
     deleteComment(id) {
         this.data = this.data.filter((comment) => comment.id !== id);

@@ -15,7 +15,8 @@ export class UsersInBoardsTable extends DataTable {
       currentId: observable,
       changeCurrentItemId: action,
       currentItem: computed,
-      addUserInBoard: action
+      addUserInBoard: action,
+      editItem: action,
     });
   }
 

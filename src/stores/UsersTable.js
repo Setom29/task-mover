@@ -15,6 +15,7 @@ export class UsersTable extends DataTable {
       changeCurrentItemId: action,
       currentItem: computed,
       addUser: action,
+      editItem: action,
     });
   }
 

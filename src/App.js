@@ -16,7 +16,6 @@ function App() {
             <Route path="/workspace" element={<WorkSpace />} />
           </Routes>
         </Router>
-        <CardModal/>
       </ThemeProvider>
   );
 }
