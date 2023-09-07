@@ -8,19 +8,17 @@ import {ThemeProvider} from '@mui/material';
 import CardModal from "./components/cardModal/CardModal";
 
 function App() {
-    return (
-
-        <ThemeProvider theme={theme}>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Login/>}/>
-                    <Route path="/workspace" element={<WorkSpace/>}/>
-                </Routes>
-            </Router>
-            <CardModal/>
-        </ThemeProvider>
-
-    );
+  return (
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+          <Route path="/" element={<Login />} />
+            <Route path="/workspace" element={<WorkSpace />} />
+          </Routes>
+        </Router>
+        <CardModal/>
+      </ThemeProvider>
+  );
 }
 
 export default App;

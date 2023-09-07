@@ -22,7 +22,7 @@ export default class CardListsTable extends DataTable {
       currentItem: computed,
       addCardList: action,
       editCardList: action,
-      deletCardList: action,
+      deleteCardList: action,
     });
   }
 
@@ -49,7 +49,7 @@ export default class CardListsTable extends DataTable {
       console.error("Invalid field");
     }
   }
-  deletCardList(id) {
+  deleteCardList(id) {
     this.data = this.data.filter((cardList) => cardList.id !== id);
   }
 }

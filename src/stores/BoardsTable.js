@@ -22,12 +22,14 @@ export class BoardsTable extends DataTable {
 
   addBoard(name, createdBy) {
     this.lastId++;
-    this.data.push({
+    let newBoard = {
       id: this.lastId,
       name: name,
       createdBy: createdBy,
-    });
+    }
+    this.data.push(newBoard);
     this.usersInBoards.addUserInBoard(createdBy, this.lastId); // user that creates board should be on it
     console.log("addBoard");
+    return newBoard;
   }
 }

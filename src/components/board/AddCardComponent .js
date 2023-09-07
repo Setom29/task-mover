@@ -17,13 +17,13 @@ const AddCardComponent = inject(
     return (
       <Box
         sx={{
-          border: "1px solid black",
-          padding: "5px",
-          backgroundColor: "darkgray",
           width: "100%",
           heigth: "1em",
           display: "flex",
           justifyContent: "center",
+          borderRadius: "5px",
+          backgroundColor: "transparent",
+          color: "transparent.main",
         }}
       >
         {open ? (
@@ -31,6 +31,13 @@ const AddCardComponent = inject(
             <TextareaAutosize
               onChange={(e) => setNewCardName(e.target.value)}
               value={newCardName}
+              sx={{
+                padding: "5px",
+                borderRadius: "5px",
+                color: "yellow",
+                background: "shadows.dark",
+                border: "1px solid shadows.main",
+              }}
             />
             <Box sx={{ display: "flex", justifyContent: "space-around" }}>
               <IconButton
@@ -46,7 +53,7 @@ const AddCardComponent = inject(
                   setNewCardName("");
                 }}
               >
-                <SendIcon />
+                <SendIcon color="transparent.contrastText" />
               </IconButton>
               <IconButton
                 variant="contained"
@@ -55,14 +62,19 @@ const AddCardComponent = inject(
                   setNewCardName("");
                 }}
               >
-                <CloseIcon />
+                <CloseIcon color="shades" />
               </IconButton>
             </Box>
           </Box>
         ) : (
-          <IconButton variant="contained" onClick={() => setOpen(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setOpen(true)}
+            color="transparent"
+            sx={{ width: "100%" }}
+          >
             <AddCircleOutlineIcon />
-          </IconButton>
+          </Button>
         )}
       </Box>
     );
