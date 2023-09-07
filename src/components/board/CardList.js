@@ -5,10 +5,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 import Card from "./Card";
 import AddCardComponent from "./AddCardComponent ";
-// {cardListId, users, setUsers, cardLists, setCardLists, cards, setCards, comments, setComments}
+import {Link} from "react-router-dom";
 const CardList = inject(
-  "cardListsTable",
-  "cardsTable"
+    "cardListsTable",
+    "cardsTable"
 )(
   observer((props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);

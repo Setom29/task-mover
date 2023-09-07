@@ -22,6 +22,7 @@ export class DataTable {
 
   getItemById(id) {
     console.log("getItemById ", id);
+    console.log(this)
     return this.data.find((item) => item.id === id);
   }
 

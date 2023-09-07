@@ -26,6 +26,7 @@ export default class CardListsTable extends DataTable {
     });
   }
 
+  //нужно создавать CardList или new Card(...)?
   addCardList(name, boardId) {
     console.log("addCardList");
     this.lastId++;

@@ -1,12 +1,17 @@
 import React from "react";
-import { observer, inject } from "mobx-react";
-import { Typography, Box } from "@mui/material";
+import {observer, inject} from "mobx-react";
+import {Typography, Box} from "@mui/material";
+import CardModal from "../cardModal/CardModal";
+import {Link} from "react-router-dom";
 
-// cardId, users, setUsers, cards, setCards, comments, setComments
 const Card = inject("cardsTable")(
   observer((props) => {
+    
+    const {open, toggle} = props.modalStateStore
+    const {name, description, createdAt, createdBy, assignee} = props.cardsTable.getItemById(props.cardId)
+    
     return (
-      <Box
+      <Box onClick={() => toggle(props.cardId)
         sx={{
           padding: "5px",
           borderRadius: "5px",
