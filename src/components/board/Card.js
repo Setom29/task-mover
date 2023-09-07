@@ -8,14 +8,15 @@ const Card = inject("cardsTable")(
     return (
       <Box
         sx={{
-          border: "1px solid black",
           padding: "5px",
-          backgroundColor: "darkgray",
+          borderRadius: "5px",
+          backgroundColor: "yellow.light",
+          color: "transparent.main",
           width: "100%",
           height: "3em",
         }}
       >
-        <Typography variant="caption" >
+        <Typography variant="caption" sx={{color: "shades.dark"}}>
           {props.cardsTable.getItemById(props.cardId).name}
         </Typography>
       </Box>
