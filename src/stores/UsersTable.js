@@ -6,7 +6,7 @@ export class UsersTable extends DataTable {
   constructor() {
     super();
     this.data = initialUsersData;
-    this.currentId = this.data[2].id;
+    this.currentId = this.data[0].id; // it doesn't use dynamic data from Users.js -> play with index [0-1-2]
     this.lastId = this.data[this.data.length - 1].id;
 
     makeObservable(this, {

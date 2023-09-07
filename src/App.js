@@ -9,14 +9,14 @@ import { ThemeProvider } from '@mui/material';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Routes>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/workspace" element={<WorkSpace />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+            <Route path="/workspace" element={<WorkSpace />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
   );
 }
 
