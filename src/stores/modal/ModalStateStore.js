@@ -1,10 +1,12 @@
 import {action, makeObservable, observable} from "mobx";
 
 export default class ModalStateStore {
-    open = false
     constructor() {
+        this.open = false;
+        this.currentCardId = null;
         makeObservable(this, {
             open: observable,
+            currentCardId:observable,
             toggle: action,
         })
     }
@@ -19,5 +21,4 @@ export default class ModalStateStore {
             this.currentCardId = cardId;
         }
     }
-
 }
