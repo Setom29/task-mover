@@ -1,4 +1,4 @@
-import { IconButton, TextareaAutosize } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { Box } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
@@ -18,47 +18,55 @@ const AddBoardComponent = inject(
       <Box
         sx={{
           border: "none",
-          padding: "5px",
-          backgroundColor: "primary.main",
+          backgroundColor: "transparent.main",
           heigth: "1em",
           display: "flex",
           justifyContent: "start",
         }}
       >
         {open ? (
-          <Box sx={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-            <TextareaAutosize
-              maxRows={1}
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
+            <TextField
+              color="shades"
+              variant="outlined"
               onChange={(e) => setNewBoardName(e.target.value)}
               value={newBoardName}
             />
-            <Box  sx={{display: "flex", flexDirection: "row", alignItems: "center"}} >
-                <IconButton
-                  disabled={newBoardName === ""}
-                  onClick={() => {
-                    const newBoard = props.boardsTable.addBoard(
-                        newBoardName,
-                        props.usersTable.currentItem.id
-                    );
-                    props.boardsTable.changeCurrentItemId(newBoard.id);
-                    setOpen(false);
-                    setNewBoardName("");
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                disabled={newBoardName === ""}
+                onClick={() => {
+                  const newBoard = props.boardsTable.addBoard(
+                    newBoardName,
+                    props.usersTable.currentItem.id
+                  );
+                  props.boardsTable.changeCurrentItemId(newBoard.id);
+                  setOpen(false);
+                  setNewBoardName("");
                 }}
-                >
+              >
                 <SendIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    setOpen(false);
-                    setNewBoardName("");
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  setOpen(false);
+                  setNewBoardName("");
                 }}
-                >
+              >
                 <CloseIcon />
-                </IconButton>
+              </IconButton>
             </Box>
           </Box>
         ) : (
-          <IconButton onClick={() => setOpen(true)} sx={{aspectRatio: "1/1"}}>
+          <IconButton onClick={() => setOpen(true)} sx={{ aspectRatio: "1/1" }}>
             <AddCircleOutlineIcon />
           </IconButton>
         )}

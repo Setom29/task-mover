@@ -36,7 +36,7 @@ const BoardHeader = inject(
           gap: "20px",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "shades.main",
+          backgroundColor: "transparent.dark",
           padding: "10px",
         }}
       >

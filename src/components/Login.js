@@ -8,7 +8,7 @@ const Login = inject("usersTable")(
   observer((props) => {
     return (
       <Box
-        bgcolor="primary.main"
+        bgcolor="shades.main"
         sx={{
           display: "flex",
           justifyContent: "center",

@@ -33,9 +33,9 @@ const Users = inject("usersTable")(
             >
               Log in
             </Typography>
-            {users.map((user) => {
+            {users.map((user, index) => {
               return (
-                <Link to="/workspace">
+                <Link to="/workspace" key={index}>
                   <Button
                     onClick={changeCurrentUser}
                     value={user.id}
