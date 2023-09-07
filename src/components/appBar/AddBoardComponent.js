@@ -17,12 +17,12 @@ const AddBoardComponent = inject(
     return (
       <Box
         sx={{
-          border: "1px solid black",
+          border: "none",
           padding: "5px",
-          backgroundColor: "primary.dark",
+          backgroundColor: "primary.main",
           heigth: "1em",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "start",
         }}
       >
         {open ? (
@@ -34,9 +34,8 @@ const AddBoardComponent = inject(
             />
             <Box  sx={{display: "flex", flexDirection: "row", alignItems: "center"}} >
                 <IconButton
-                variant="contained"
-                disabled={newBoardName === ""}
-                onClick={() => {
+                  disabled={newBoardName === ""}
+                  onClick={() => {
                     const newBoard = props.boardsTable.addBoard(
                         newBoardName,
                         props.usersTable.currentItem.id
@@ -49,8 +48,7 @@ const AddBoardComponent = inject(
                 <SendIcon />
                 </IconButton>
                 <IconButton
-                variant="contained"
-                onClick={() => {
+                  onClick={() => {
                     setOpen(false);
                     setNewBoardName("");
                 }}
@@ -60,7 +58,7 @@ const AddBoardComponent = inject(
             </Box>
           </Box>
         ) : (
-          <IconButton variant="contained" onClick={() => setOpen(true)} sx={{aspectRatio: "1/1"}}>
+          <IconButton onClick={() => setOpen(true)} sx={{aspectRatio: "1/1"}}>
             <AddCircleOutlineIcon />
           </IconButton>
         )}
