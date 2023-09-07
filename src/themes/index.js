@@ -1,35 +1,21 @@
 import { blue, grey } from "@mui/material/colors";
 import createTheme from "@mui/material/styles/createTheme";
 
-
 const theme = createTheme({
   palette: {
     primary: {
-        main: blue[500],
-        light: blue[800],
-        dark: blue[400],
-        contrastText: "rgba(0, 0, 0, 0.54)",
+      main: blue[500],
+      light: blue[800],
+      dark: blue[400],
+      contrastText: "rgba(0, 0, 0, 0.54)",
     },
     secondary: {
       main: grey[700],
       light: grey[800],
       dark: grey[400],
       contrastText: "rgba(0, 0, 0, 0.54)",
-  },
-  components: {
-    Cards: {
-      styleOverrides: {
-        root: ({ ownerState }) => ({
-          ...(ownerState.variant === 'contained' &&
-            ownerState.color === 'primary' && {
-              backgroundColor: '#202020',
-              color: '#fff',
-            }),
-        }),
-      },
     },
-  },
   },
 });
 
-export default theme
+export default theme;
