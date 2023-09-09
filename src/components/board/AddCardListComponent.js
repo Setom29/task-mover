@@ -1,4 +1,4 @@
-import { IconButton, TextField } from "@mui/material";
+import { IconButton, TextField, Button } from "@mui/material";
 import { Box } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
@@ -6,13 +6,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
 
-const AddBoardComponent = inject(
+const AddCardListComponent = inject(
   "boardsTable",
-  "usersTable"
+  "cardListsTable"
 )(
   observer((props) => {
     const [open, setOpen] = useState(false);
-    const [newBoardName, setNewBoardName] = useState("");
+    const [cardListName, setCardListName] = useState("");
 
     return (
       <Box
@@ -31,9 +31,10 @@ const AddBoardComponent = inject(
             <TextField
               color="shades"
               variant="outlined"
-              onChange={(e) => setNewBoardName(e.target.value)}
-              value={newBoardName}
-              placeholder="Board name"
+              onChange={(e) => setCardListName(e.target.value)}
+              value={cardListName}
+              size="small"
+              placeholder="List name"
             />
             <Box
               sx={{
@@ -43,15 +44,14 @@ const AddBoardComponent = inject(
               }}
             >
               <IconButton
-                disabled={newBoardName === ""}
+                disabled={cardListName === ""}
                 onClick={() => {
-                  const newBoard = props.boardsTable.addBoard(
-                    newBoardName,
-                    props.usersTable.currentItem.id
+                  props.cardListsTable.addCardList(
+                    cardListName,
+                    props.boardsTable.currentId
                   );
-                  props.boardsTable.changeCurrentItemId(newBoard.id);
                   setOpen(false);
-                  setNewBoardName("");
+                  setCardListName("");
                 }}
               >
                 <SendIcon />
@@ -59,7 +59,7 @@ const AddBoardComponent = inject(
               <IconButton
                 onClick={() => {
                   setOpen(false);
-                  setNewBoardName("");
+                  setCardListName("");
                 }}
               >
                 <CloseIcon />
@@ -67,13 +67,17 @@ const AddBoardComponent = inject(
             </Box>
           </Box>
         ) : (
-          <IconButton onClick={() => setOpen(true)} sx={{ aspectRatio: "1/1" }}>
-            <AddCircleOutlineIcon sx={{color: "transparent.contrastText"}}/>
-          </IconButton>
+          <Button
+            variant="contained"
+            onClick={() => setOpen(true)}
+            color="transparent"
+          >
+            Add new list
+          </Button>
         )}
       </Box>
     );
   })
 );
 
-export default AddBoardComponent;
+export default AddCardListComponent;

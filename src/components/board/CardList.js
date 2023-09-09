@@ -46,7 +46,7 @@ const CardList = inject(
             {props.cardListsTable.getItemById(props.cardListId).name}
           </Typography>
           <IconButton onClick={handleClick}>
-            <CloseIcon />
+            <CloseIcon sx={{ color: "transparent.contrastText" }}/>
           </IconButton>
         </Box>
         {/* filter cards by cardListId and display them in the correct order */}
@@ -55,7 +55,7 @@ const CardList = inject(
             (card) => card.cardListId === props.cardListId
           ),
         ]
-          .sort((a, b) => a.order < b.order)
+          .sort((a, b) => a.order - b.order)
           .map((card, index) => (
             <Card key={index} cardId={card.id} />
           ))}

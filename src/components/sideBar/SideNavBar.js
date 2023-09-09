@@ -11,6 +11,7 @@ export default function SideNavBar() {
       alignItems="center"
       spacing={0}
       bgcolor="shades.light"
+      sx = {{minWidth: "150px"}}
       // we'll have opacity when we set our palette, defining colors via rgba().
       // Seems there's no way to make it with preset MUI colors
     >
