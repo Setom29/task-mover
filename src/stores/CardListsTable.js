@@ -22,7 +22,7 @@ export default class CardListsTable extends DataTable {
       currentItem: computed,
       addCardList: action,
       deleteCardList: action,
-      editItem: action,
+      editItem: action
     });
   }
 
@@ -41,4 +41,5 @@ export default class CardListsTable extends DataTable {
   deleteCardList(id) {
     this.data = this.data.filter((cardList) => cardList.id !== id);
   }
+
 }

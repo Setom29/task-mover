@@ -6,6 +6,9 @@ import AppHeader from "./appBar/AppHeader";
 import { inject, observer } from "mobx-react";
 import CardModal from "./cardModal/CardModal";
 
+import { DndProvider } from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
+
 const WorkSpace = inject(
   "usersTable",
   "boardsTable",
@@ -34,7 +37,9 @@ const WorkSpace = inject(
           }}
         >
           <SideNavBar />
-          <Board boardId={props.boardsTable.currentId} />
+          <DndProvider backend={HTML5Backend}>
+            <Board boardId={props.boardsTable.currentId} />
+          </DndProvider>
         </Box>
         {props.modalStateStore.open ? <CardModal /> : null}
       </Box>
