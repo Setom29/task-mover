@@ -24,7 +24,7 @@ const Board = inject("cardListsTable")(
           ]
           .sort((a, b) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0)
             .map((cardList) => (
-              <CardList cardListId={cardList.id} />
+              <CardList key={cardList.id} cardListId={cardList.id} />
             ))}
         </Box>
       </Box>
