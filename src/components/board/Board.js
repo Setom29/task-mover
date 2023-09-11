@@ -24,16 +24,16 @@ const Board = inject("cardListsTable")(
               width: "fit-content",
             }}
           >
-            {/* filter cardLists by boardId and display them in the correct order */}
-            {[
-              ...props.cardListsTable.data.filter(
-                (cardList) => cardList.boardId === props.boardId
-              ),
-            ]
-              .sort((a, b) => a.order - b.order)
-              .map((cardList) => (
-                <CardList cardListId={cardList.id} />
-              ))}
+          {/* filter cardLists by boardId and display them in the correct order */}
+          {[
+            ...props.cardListsTable.data.filter(
+              (cardList) => cardList.boardId === props.boardId
+            ),
+          ]
+          .sort((a, b) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0)
+            .map((cardList) => (
+              <CardList key={cardList.id} cardListId={cardList.id} />
+            ))}
           </Box>
         </Box>
       </Box>
