@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {observer, inject} from "mobx-react";
 import {Typography, Box} from "@mui/material";
 import CardModal from "../cardModal/CardModal";
@@ -9,6 +9,7 @@ import { useDrag, useDrop } from "react-dnd";
 const typeToAcceptDrop = "Card";
 
 const Card = inject("cardsTable", "modalStateStore")(
+  
   observer((props) => {
 
     // const ref = useRef(null); 
@@ -25,7 +26,8 @@ const Card = inject("cardsTable", "modalStateStore")(
         const newCardListId = props.cardsTable.getItemById(props.cardId).cardListId;
         const insertAfterCardId = props.cardsTable.getPrevCardIdInCardList(props.cardId);
         props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
-      }
+      },
+
     });
   
       // useDrag will be responsible for making an element draggable. 
@@ -53,20 +55,37 @@ const Card = inject("cardsTable", "modalStateStore")(
     // const {name, description, createdAt, createdBy, assignee} = props.cardsTable.getItemById(props.cardId)
     
     return (
-      <Box onClick={() => toggle(props.cardId)}
-        ref={(node) => drag(drop(node))}
-        sx={{
-          padding: "5px",
-          borderRadius: "5px",
-          backgroundColor: isDragging ? "yellow.dark" : isSomethingDropping ? "green" : "yellow.light", 
-          color: "transparent.main",
-          width: "100%",
-          height: "3em",
-        }}
-      >
-        <Typography variant="caption" sx={{color: "shades.dark"}}>
-          {props.cardsTable.getItemById(props.cardId).name}
-        </Typography>
+      <Box ref={(node) => drag(drop(node))}>
+        {/* first part is an empty box that imitates empty space for dropping, if isSomethingDropping */}
+        {isSomethingDropping ? 
+        <Box
+          sx={{
+            padding: "5px",
+            borderRadius: "5px",
+            backgroundColor: "green", 
+            color: "transparent.main",
+            width: "100%",
+            height: "3em",
+          }}
+        >
+        </Box> 
+        : null }
+        <Box onClick={() => toggle(props.cardId)}
+          ref={(node) => drag(drop(node))}
+          sx={{
+            padding: "5px",
+            borderRadius: "5px",
+            backgroundColor: isDragging ? "yellow.dark" : "yellow.light", 
+            color: "transparent.main",
+            width: "100%",
+            height: "3em",
+            // mt: isHovering && isSomethingDropping ? "25%" : "0",
+          }}
+        >
+          <Typography variant="caption" sx={{color: "shades.dark"}}>
+            {props.cardsTable.getItemById(props.cardId).name}
+          </Typography>
+        </Box>
       </Box>
     );
   })

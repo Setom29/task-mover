@@ -84,7 +84,7 @@ export default class CardsTable extends DataTable {
       }
     } else {
       if (insertAfterCardId === null) {
-        cardToMove.order = Math.max(...this.data
+        cardToMove.order = Math.min(...this.data
                           .filter(card => card.cardListId === newCardListId)
                           .map(card => card.order)) - 1;
         console.log("diff list, insert in beginning")
