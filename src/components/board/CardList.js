@@ -55,9 +55,9 @@ const CardList = inject(
             (card) => card.cardListId === props.cardListId
           ),
         ]
-          .sort((a, b) => a.order < b.order)
+          .sort((a, b) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0)
           .map((card, index) => (
-            <Card key={index} cardId={card.id} />
+            <Card key={card.id} cardId={card.id} />
           ))}
         <AddCardComponent cardListId={props.cardListId} />
         <Popover
