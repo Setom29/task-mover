@@ -39,13 +39,13 @@ const AppHeader = inject("usersTable")(
             <AddBoardComponent />
           </Box>
           <Box display="flex" alignItems="center" gap="10px">
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" color={"transparent.contrastText"}>
               {props.usersTable.currentItem.name}{" "}
               {props.usersTable.currentItem.surname}
             </Typography>
             <Link to="/">
               <IconButton>
-                <AccountCircle />
+                <AccountCircle  sx={{color: "transparent.contrastText"}}/>
               </IconButton>
             </Link>
           </Box>

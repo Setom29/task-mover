@@ -1,7 +1,7 @@
 import { Button, IconButton, TextareaAutosize } from "@mui/material";
 import { Box } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import SendIcon from "@mui/icons-material/Send";
+import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
@@ -53,7 +53,7 @@ const AddCardComponent = inject(
                   setNewCardName("");
                 }}
               >
-                <SendIcon color="transparent.contrastText" />
+                <DoneIcon sx={{ color: "transparent.contrastText" }} />
               </IconButton>
               <IconButton
                 variant="contained"
@@ -62,7 +62,7 @@ const AddCardComponent = inject(
                   setNewCardName("");
                 }}
               >
-                <CloseIcon color="shades" />
+                <CloseIcon sx={{ color: "transparent.contrastText" }} />
               </IconButton>
             </Box>
           </Box>

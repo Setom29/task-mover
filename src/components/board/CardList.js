@@ -46,7 +46,7 @@ const CardList = inject(
             {props.cardListsTable.getItemById(props.cardListId).name}
           </Typography>
           <IconButton onClick={handleClick}>
-            <CloseIcon />
+            <CloseIcon sx={{ color: "transparent.contrastText" }}/>
           </IconButton>
         </Box>
         {/* filter cards by cardListId and display them in the correct order */}
