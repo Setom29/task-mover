@@ -36,7 +36,7 @@ export default class CardsTable extends DataTable {
       name: name,
       description: "",
       cardListId: cardListId,
-      order: this.data.filter((item) => item.cardListId === cardListId).length,
+      order: this.getLastCardOrderInCardList(cardListId),
       createdAt: new Date().getTime(),
       createdBy: userId,
       dueTo: dueTo,
@@ -48,7 +48,7 @@ export default class CardsTable extends DataTable {
     this.data = this.data.filter((card) => card.id !== id);
   }
 
-  getPrevCardIdInCardList(cardId) {
+  getPrevCardIdInSameCardList(cardId) {
     const cardToUse = this.getItemById(cardId);
     const arrFilteredCardList = this.data.filter(card => card.cardListId === cardToUse.cardListId && 
                                                 card.order < cardToUse.order);
@@ -56,10 +56,33 @@ export default class CardsTable extends DataTable {
       return null;
     } else 
     {
-      const prevCard = getMaxObjectInArray(arrFilteredCardList, "order");
-      return prevCard.id;
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.id;
     }
   }
+
+  getLastCardIdInCardList(cardListId) {
+    const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
+    if (arrFilteredCardList.length === 0) {
+      return null;
+    } else 
+    {
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.id;
+    }
+  }
+
+  getLastCardOrderInCardList(cardListId) {
+    const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
+    if (arrFilteredCardList.length === 0) {
+      return -1;
+    } else 
+    {
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.order;
+    }
+  }
+
 
   moveCard(cardId, newCardListId, insertAfterCardId) {
     // move card id to card list cardListId, inserting it after card insertAfterCardId; 

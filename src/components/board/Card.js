@@ -5,14 +5,12 @@ import CardModal from "../cardModal/CardModal";
 import {Link} from "react-router-dom";
 
 import { useDrag, useDrop } from "react-dnd";
-
-const typeToAcceptDrop = "Card";
+import {typeToAcceptDrop} from "../../utils/constants";
 
 const Card = inject("cardsTable", "modalStateStore")(
   
   observer((props) => {
 
-    // const ref = useRef(null); 
     const [{isSomethingDropping}, drop] = useDrop({
       accept: typeToAcceptDrop,
 
@@ -24,7 +22,7 @@ const Card = inject("cardsTable", "modalStateStore")(
 
       drop: (item) => {
         const newCardListId = props.cardsTable.getItemById(props.cardId).cardListId;
-        const insertAfterCardId = props.cardsTable.getPrevCardIdInCardList(props.cardId);
+        const insertAfterCardId = props.cardsTable.getPrevCardIdInSameCardList(props.cardId);
         props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
       },
 
@@ -67,8 +65,7 @@ const Card = inject("cardsTable", "modalStateStore")(
             width: "100%",
             height: "3em",
           }}
-        >
-        </Box> 
+        />
         : null }
         <Box onClick={() => toggle(props.cardId)}
           ref={(node) => drag(drop(node))}
