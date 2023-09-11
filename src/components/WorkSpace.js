@@ -1,13 +1,18 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useState } from "react";
+import { Box, IconButton, SpeedDial, SpeedDialAction } from "@mui/material";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import ChatIcon from "@mui/icons-material/Chat";
 import SideNavBar from "./sideBar/SideNavBar";
 import Board from "./board/Board";
 import AppHeader from "./appBar/AppHeader";
 import { inject, observer } from "mobx-react";
 import CardModal from "./cardModal/CardModal";
+import ChatPopup from "./chat/ChatPopup";
 
 import { DndProvider } from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+const actions = [{ icon: <ChatIcon />, name: "Chat" }];
 
 const WorkSpace = inject(
   "usersTable",
@@ -15,9 +20,11 @@ const WorkSpace = inject(
   "modalStateStore"
 )(
   observer((props) => {
+    const [openPopup, setOpenPopup] = useState(false);
     return (
       <Box
         sx={{
+          position: "relative",
           width: "100wh",
           height: "100vh",
           display: "flex",
@@ -42,6 +49,22 @@ const WorkSpace = inject(
           </DndProvider>
         </Box>
         {props.modalStateStore.open ? <CardModal /> : null}
+
+        {openPopup ? (
+          <ChatPopup setOpenPopup={setOpenPopup} openPopup={openPopup} />
+        ) : (
+          <IconButton
+            onClick={() => setOpenPopup(true)}
+            sx={{
+              position: "absolute",
+              bottom: 16,
+              right: 16,
+              backgroundColor: "green.main",
+            }}
+          >
+            <ChatIcon />
+          </IconButton>
+        )}
       </Box>
     );
   })
