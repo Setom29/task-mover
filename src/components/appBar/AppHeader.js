@@ -2,7 +2,7 @@ import { observer, inject } from "mobx-react";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import BoardsSelect from "./BoardsSelect";
 import AddBoardComponent from "./AddBoardComponent";
-import imgLogo from "../../assets/logo-small.png";
+import imgLogo from "../../assets/logo-small-yellow-light.png";
 import { AccountCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
