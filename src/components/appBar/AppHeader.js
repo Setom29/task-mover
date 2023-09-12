@@ -6,7 +6,7 @@ import imgLogo from "../../assets/logo-small-yellow-light.png";
 import { AccountCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const AppHeader = inject("usersTable")(
+const AppHeader = inject("usersTable")( 
   observer((props) => {
     return (
       <AppBar position="static" color="shades">

@@ -119,7 +119,6 @@ export default class CardsTable extends DataTable {
           console.log("same list, insert in middle, move backward")
         }
         cardToMove.order = newOrder;
-        console.log("same list, insert in middle")
       }
     } else {
       if (insertAfterCardId === null) {
