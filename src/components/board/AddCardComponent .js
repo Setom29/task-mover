@@ -67,6 +67,7 @@ const AddCardComponent = inject(
               <TextareaAutosize
                 onChange={(e) => setNewCardName(e.target.value)}
                 value={newCardName}
+                autoFocus
                 sx={{
                   padding: "5px",
                   borderRadius: "5px",

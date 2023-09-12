@@ -31,6 +31,7 @@ const AddBoardComponent = inject(
             <TextField
               color="shades"
               variant="outlined"
+              autoFocus
               onChange={(e) => setNewBoardName(e.target.value)}
               value={newBoardName}
               placeholder="Board name"

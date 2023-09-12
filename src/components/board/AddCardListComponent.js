@@ -31,6 +31,7 @@ const AddCardListComponent = inject(
             <TextField
               color="shades"
               variant="outlined"
+              autoFocus
               onChange={(e) => setCardListName(e.target.value)}
               value={cardListName}
               size="small"
