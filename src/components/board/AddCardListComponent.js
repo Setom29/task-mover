@@ -14,6 +14,29 @@ const AddCardListComponent = inject(
     const [open, setOpen] = useState(false);
     const [cardListName, setCardListName] = useState("");
 
+    const handleOK = function() {
+        props.cardListsTable.addCardList(
+          cardListName,
+          props.boardsTable.currentId
+        );
+        setOpen(false);
+        setCardListName("");
+    }
+
+    const handleCancel = function() {
+        setOpen(false);
+        setCardListName("");
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        handleOK();
+      } else if (event.key === 'Escape') {
+        handleCancel();
+      }
+    };
+  
+
     return (
       <Box
         sx={{
@@ -33,6 +56,7 @@ const AddCardListComponent = inject(
               variant="outlined"
               autoFocus
               onChange={(e) => setCardListName(e.target.value)}
+              onKeyDown={handleKeyDown}
               value={cardListName}
               size="small"
               placeholder="List name"
@@ -46,22 +70,12 @@ const AddCardListComponent = inject(
             >
               <IconButton
                 disabled={cardListName === ""}
-                onClick={() => {
-                  props.cardListsTable.addCardList(
-                    cardListName,
-                    props.boardsTable.currentId
-                  );
-                  setOpen(false);
-                  setCardListName("");
-                }}
+                onClick={handleOK}
               >
                 <SendIcon />
               </IconButton>
               <IconButton
-                onClick={() => {
-                  setOpen(false);
-                  setCardListName("");
-                }}
+                onClick={handleCancel}
               >
                 <CloseIcon />
               </IconButton>

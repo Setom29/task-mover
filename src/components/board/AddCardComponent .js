@@ -17,6 +17,31 @@ const AddCardComponent = inject(
     const [open, setOpen] = useState(false);
     const [newCardName, setNewCardName] = useState("");
 
+    const handleOK = function() {
+        props.cardsTable.addCard(
+          newCardName,
+          props.cardListId,
+          props.usersTable.currentItem
+        );
+        setOpen(false);
+        setNewCardName("");
+    }
+
+    const handleCancel = function() {
+      setOpen(false);
+      setNewCardName("");
+    }
+
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter'  && event.ctrlKey) {
+        handleOK();
+      } else if (event.key === 'Escape') {
+        handleCancel();
+      }
+    };
+
+
     const [{isSomethingDropping}, drop] = useDrop({
       accept: dragTypeCard,
 
@@ -66,6 +91,7 @@ const AddCardComponent = inject(
             <Box>
               <TextareaAutosize
                 onChange={(e) => setNewCardName(e.target.value)}
+                onKeyDown={handleKeyDown}
                 value={newCardName}
                 autoFocus
                 sx={{
@@ -80,24 +106,13 @@ const AddCardComponent = inject(
                 <IconButton
                   variant="contained"
                   disabled={newCardName === ""}
-                  onClick={() => {
-                    props.cardsTable.addCard(
-                      newCardName,
-                      props.cardListId,
-                      props.usersTable.currentItem
-                    );
-                    setOpen(false);
-                    setNewCardName("");
-                  }}
+                  onClick={handleOK}
                 >
                   <DoneIcon sx={{ color: "transparent.contrastText" }} />
                 </IconButton>
                 <IconButton
                   variant="contained"
-                  onClick={() => {
-                    setOpen(false);
-                    setNewCardName("");
-                  }}
+                  onClick={handleCancel}
                 >
                   <CloseIcon sx={{ color: "transparent.contrastText" }} />
                 </IconButton>
