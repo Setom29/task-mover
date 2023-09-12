@@ -8,7 +8,7 @@ export default function ChatPopup(props) {
     <Box
       sx={{
         position: "fixed",
-        width: "300px",
+        width: "400px",
         height: " fit-content",
         bottom: 20,
         right: 20,
