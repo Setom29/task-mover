@@ -1,7 +1,5 @@
 import OpenAI from "openai";
 
-const defaultRole = "You are a helpful assistant.";
-
 const openai = new OpenAI({
   apiKey: "your-api-key", // defaults to process.env["OPENAI_API_KEY"]
   dangerouslyAllowBrowser: true,
@@ -16,13 +14,16 @@ export async function makeRequest(messages, setMessages) {
       temperature: 0.7,
     })
     .catch((err) => console.log(err));
-  console.log(completion);
-  setMessages([
-    ...messages,
-    {
-      id: new Date().getTime(),
-      text: completion.choices[0].message.content,
-      sender: "bot",
-    },
-  ]);
+  try {
+    setMessages([
+      ...messages,
+      {
+        id: new Date().getTime(),
+        text: completion.choices[0].message.content,
+        sender: "bot",
+      },
+    ]);
+  } catch (err) {
+    console.log(err);
+  }
 }
