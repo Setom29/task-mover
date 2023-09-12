@@ -57,6 +57,7 @@ const AddCardComponent = inject(
             justifyContent: "center",
             borderRadius: "5px",
             backgroundColor: "transparent",
+            mt: "20px",
             color: "transparent.main",
           }}
         >

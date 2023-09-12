@@ -72,10 +72,11 @@ const Card = inject("cardsTable", "modalStateStore")(
           sx={{
             padding: "5px",
             borderRadius: "5px",
-            backgroundColor: isDragging ? "yellow.dark" : "yellow.light", 
+            backgroundColor: "yellow.light", 
             color: "transparent.main",
             width: "100%",
             height: "3em",
+            display: isDragging ? "none" : "block"
             // mt: isHovering && isSomethingDropping ? "25%" : "0",
           }}
         >
