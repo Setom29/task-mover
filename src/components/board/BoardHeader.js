@@ -11,7 +11,7 @@ import {
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
-import UsersWorking from "../appBar/UsersWorking";
+import UsersWorking from "./UsersWorking";
 import AddCardListComponent from "./AddCardListComponent";
 const BoardHeader = inject(
   "cardListsTable",
@@ -41,7 +41,7 @@ const BoardHeader = inject(
           padding: "10px",
         }}
       >
-        <AddCardListComponent/>
+        <AddCardListComponent />
         {/* <Popover
           open={open}
           anchorEl={anchorEl}
@@ -84,8 +84,7 @@ const BoardHeader = inject(
           </Box>
         </Popover> */}
 
-
-        <UsersWorking/>
+        <UsersWorking />
       </Box>
     );
   })

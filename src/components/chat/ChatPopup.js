@@ -28,7 +28,7 @@ export default function ChatPopup(props) {
           <Close />
         </IconButton>
       </Toolbar>
-      <ChatUI />
+      <ChatUI messages = {props.messages} setMessages={props.setMessages}/>
     </Box>
   );
 }

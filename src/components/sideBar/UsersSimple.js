@@ -3,9 +3,15 @@ import { Stack } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import { Box, Button } from "@mui/material";
 
-const UsersSimple = inject("usersTable")(
+const UsersSimple = inject(
+  "usersTable",
+  "usersInBoardsTable",
+  "boardsTable"
+)(
   observer((props) => {
-    let users = [...props.usersTable.data];
+    let users = props.usersInBoardsTable
+      .getUserIdsByBoardId(props.boardsTable.currentId)
+      .map((userId) => props.usersTable.getItemById(userId));
 
     return (
       <Stack

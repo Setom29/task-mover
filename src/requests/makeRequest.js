@@ -25,5 +25,13 @@ export async function makeRequest(messages, setMessages) {
     ]);
   } catch (err) {
     console.log(err);
+    setMessages([
+      ...messages,
+      {
+        id: new Date().getTime(),
+        text: "Error",
+        sender: "bot",
+      },
+    ]);
   }
 }
