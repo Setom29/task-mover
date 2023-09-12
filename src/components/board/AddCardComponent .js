@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
 
-import {typeToAcceptDrop} from "../../utils/constants";
+import {dragTypeCard} from "../../utils/constants";
 import { useDrag, useDrop } from "react-dnd";
 
 const AddCardComponent = inject(
@@ -18,7 +18,7 @@ const AddCardComponent = inject(
     const [newCardName, setNewCardName] = useState("");
 
     const [{isSomethingDropping}, drop] = useDrop({
-      accept: typeToAcceptDrop,
+      accept: dragTypeCard,
 
       collect: (monitor) => {
         return {
@@ -29,6 +29,7 @@ const AddCardComponent = inject(
       drop: (item) => {
         const newCardListId = props.cardListId;
         const insertAfterCardId = props.cardsTable.getLastCardIdInCardList(props.cardListId);
+        if (item.cardId === insertAfterCardId) return; // no drop on itself
         props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
       },
 

@@ -5,14 +5,14 @@ import CardModal from "../cardModal/CardModal";
 import {Link} from "react-router-dom";
 
 import { useDrag, useDrop } from "react-dnd";
-import {typeToAcceptDrop} from "../../utils/constants";
+import {dragTypeCard} from "../../utils/constants";
 
 const Card = inject("cardsTable", "modalStateStore")(
   
   observer((props) => {
 
     const [{isSomethingDropping}, drop] = useDrop({
-      accept: typeToAcceptDrop,
+      accept: dragTypeCard,
 
       collect: (monitor) => {
         return {
@@ -23,6 +23,7 @@ const Card = inject("cardsTable", "modalStateStore")(
       drop: (item) => {
         const newCardListId = props.cardsTable.getItemById(props.cardId).cardListId;
         const insertAfterCardId = props.cardsTable.getPrevCardIdInSameCardList(props.cardId);
+        if (item.cardId === insertAfterCardId) return; // no drop on itself
         props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
       },
 
@@ -32,7 +33,7 @@ const Card = inject("cardsTable", "modalStateStore")(
       // It also exposes isDragging method to add any styles while dragging
     const [{ isDragging }, drag] = useDrag(() => ({
       // what type of item this to determine if a drop target accepts it
-      type: typeToAcceptDrop,
+      type: dragTypeCard,
       // data of the item to be available to the drop methods
       item: { cardId: props.cardId },
       // method to collect additional data for drop handling like whether is currently being dragged
