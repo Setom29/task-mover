@@ -77,11 +77,11 @@ const Card = inject("cardsTable", "modalStateStore")(
             color: "transparent.main",
             width: "100%",
             height: "3em",
-            display: isDragging ? "none" : "block"
-            // mt: isHovering && isSomethingDropping ? "25%" : "0",
+            display: isDragging ? "none" : "block",
+            textOverflow: "ellipsis"
           }}
         >
-          <Typography variant="caption" sx={{color: "shades.dark"}}>
+          <Typography component="div" variant="caption" noWrap sx={{color: "shades.dark"}}>
             {props.cardsTable.getItemById(props.cardId).name}
           </Typography>
         </Box>
