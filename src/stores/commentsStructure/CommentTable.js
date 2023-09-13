@@ -18,20 +18,27 @@ export default class CommentTable extends DataTable {
             // editComment: action,
             deleteComment: action,
             editItem: action,
+            getCommentByCardId: action,
         })
 
     }
 
+    getCommentByCardId(cardId) {
+        console.log("getComment")
+       return this.data.filter((comment) => comment.card_id === cardId)
+    }
+
     addComment(text, user_id, card_id) {
-        console.log("addComment")
+       // console.log(text)
         this.lastId++
         this.data.push({
             id: this.lastId,
             text: text,
             created_at: new Date().getTime(),
             user_id: user_id,
-            card_id: card_id
+            card_id: card_id,
         })
+        console.log(this.data)
     }
 
     // //,user_id, card_id, нужно добавить в параметры в дальнейшем при расширении на множество таблиц.

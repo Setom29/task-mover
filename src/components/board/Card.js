@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import {observer, inject} from "mobx-react";
 import {Typography, Box} from "@mui/material";
-import CardModal from "../cardModal/CardModal";
-import {Link} from "react-router-dom";
 
 import { useDrag, useDrop } from "react-dnd";
 import {dragTypeCard} from "../../utils/constants";

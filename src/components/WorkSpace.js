@@ -39,7 +39,7 @@ const WorkSpace = inject(
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
-          background: " rgb(128,173,215)",
+         // background: " rgb(128,173,215)",
           background:
             "linear-gradient(135deg, rgba(128,173,215,1) 0%, rgba(10,189,160,1) 35%, rgba(212,220,169,1) 100%)",
         }}
