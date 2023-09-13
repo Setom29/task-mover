@@ -1,18 +1,14 @@
-import React, {useState} from 'react'
 import Comment from './Comment'
 import {inject, observer} from "mobx-react";
-import {Box, Button, IconButton, TextareaAutosize, TextField} from "@mui/material";
-import DoneIcon from "@mui/icons-material/Done";
-import CloseIcon from "@mui/icons-material/Close";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import {Box} from "@mui/material";
+
 
 const CommentsList = inject(
     "commentsTable",
-    "usersTable"
+    "usersTable",
+
 )(
     observer((props) => {
-
-        const [comments, setComments] = useState(props.commentsTable.getCommentByCardId(props.cardId))
 
         return (
             <Box
@@ -37,7 +33,7 @@ const CommentsList = inject(
                     }}
                 >
                     {[
-                        ...comments
+                        ...props.commentsTable.getCommentByCardId(props.cardId)
                     ]
 
                         .sort((a, b) => a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0)

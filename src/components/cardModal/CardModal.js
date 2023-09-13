@@ -102,7 +102,7 @@ const CardModal = inject(
                                                     props.commentsTable.addComment(
                                                         newComment,
                                                         props.usersTable.currentItem.id,
-                                                        props.cardsTable.currentId,
+                                                        props.modalStateStore.currentCardId,
                                                     )
                                                     setNewComment("")
                                                 }

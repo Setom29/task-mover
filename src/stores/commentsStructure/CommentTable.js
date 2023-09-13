@@ -24,12 +24,10 @@ export default class CommentTable extends DataTable {
     }
 
     getCommentByCardId(cardId) {
-        console.log("getComment")
        return this.data.filter((comment) => comment.card_id === cardId)
     }
 
     addComment(text, user_id, card_id) {
-       // console.log(text)
         this.lastId++
         this.data.push({
             id: this.lastId,

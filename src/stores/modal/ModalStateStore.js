@@ -4,7 +4,7 @@ export default class ModalStateStore {
     constructor() {
         this.open = false;
         this.currentCardId = null;
-        this.currentCommentsId = null
+
         makeObservable(this, {
             open: observable,
             currentCardId: observable,
@@ -20,7 +20,7 @@ export default class ModalStateStore {
         } else {
             this.open = true;
             this.currentCardId = cardId;
-            this.currentCommentsId = cardId
+            console.log(`togglecardID ${this.currentCardId}`)
         }
     }
 }
