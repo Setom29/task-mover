@@ -3,11 +3,35 @@ import { observer, inject } from "mobx-react";
 import { Box } from "@mui/material";
 import CardList from "./CardList";
 import BoardHeader from "./BoardHeader";
+import {useDrop } from "react-dnd";
+import {dragTypeCardList} from "../../utils/constants";
+
+
 // {boardId, boards, setBoards, users, setUsers, cardLists, setCardLists, cards, setCards, comments, setComments}
 const Board = inject("cardListsTable")(
   observer((props) => {
+
+    const [{isSomethingDropping}, drop] = useDrop({
+      accept: dragTypeCardList,
+
+      collect: (monitor) => {
+        return {
+          isSomethingDropping: monitor.isOver(),
+        };
+      },
+
+      drop: (item, monitor) => {
+        if (monitor.didDrop()) return; // no drop if already dropped on child components
+        const insertAfterCardListId = props.cardListsTable.getLastCardListIdInBoard(props.boardId);
+        if (item.cardListId === insertAfterCardListId) return; // no drop on itself
+        props.cardListsTable.moveCardList(item.cardListId, insertAfterCardListId);
+      },
+
+    });
+
+
     return (
-      <Box>
+      <Box ref={(node) => drop(node) }>
         <BoardHeader />
         <Box
           sx={{

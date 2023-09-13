@@ -30,4 +30,8 @@ export class UsersTable extends DataTable {
     });
     console.log("addUser");
   }
+
+  get userIds() {
+    return this.data.map(user => user.id);
+  }
 }

@@ -37,4 +37,16 @@ export class UsersInBoardsTable extends DataTable {
       ) !== -1
     );
   }
+
+  getUserIdsByBoardId(boardId) {
+    return this.data
+      .filter((item) => item.boardId === boardId)
+      .map((item) => item.userId);
+  }
+
+  getBoardIdsByUserId(userId) {
+    return this.data
+      .filter((item) => item.userId === userId)
+      .map((item) => item.boardId);
+  }
 }

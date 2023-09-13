@@ -1,48 +1,62 @@
 export const initialUsersData = [
-    {
-        id: 1,
-        name: "Alice",
-        surname: "Smith",
-        email: "alice.smith@example.com",
-        password: "securePassword",
-    },
-    {
-        id: 2,
-        name: "Bob",
-        surname: "Johnson",
-        email: "bob.johnson@example.com",
-        password: "strongPassword",
-    },
-    {
-        id: 3,
-        name: "Eve",
-        surname: "Davis",
-        email: "eve.davis@example.com",
-        password: "evesPassword",
-    },
+  {
+    id: 1,
+    name: "Alice",
+    surname: "Smith",
+    email: "alice.smith@example.com",
+    password: "securePassword",
+  },
+  {
+    id: 2,
+    name: "Bob",
+    surname: "Johnson",
+    email: "bob.johnson@example.com",
+    password: "strongPassword",
+  },
+  {
+    id: 3,
+    name: "Eve",
+    surname: "Davis",
+    email: "eve.davis@example.com",
+    password: "evesPassword",
+  },
+  {
+    id: 4,
+    name: "Charlie",
+    surname: "Brown",
+    email: "charlie.brown@example.com",
+    password: "brownie123",
+  },
+  {
+    id: 5,
+    name: "Grace",
+    surname: "Wilson",
+    email: "grace.wilson@example.com",
+    password: "gracefulPass",
+  },
 ];
 
 export const initialUsersInBoardsData = [
-    {id: 1, userId: 1, boardId: 1},
-    {id: 2, userId: 2, boardId: 1},
-    {id: 3, userId: 3, boardId: 1}, // all users see Board 1
-    {id: 4, userId: 2, boardId: 2},
-    {id: 5, userId: 3, boardId: 2}, // users 2 and 3 see Board 2
-    {id: 6, userId: 3, boardId: 3}, // only user3 sees Board 3
+  { id: 1, userId: 1, boardId: 1 },
+  { id: 2, userId: 2, boardId: 1 },
+  { id: 3, userId: 3, boardId: 1 }, // all users see Board 1
+  { id: 4, userId: 2, boardId: 2 },
+  { id: 5, userId: 3, boardId: 2 }, // users 2 and 3 see Board 2
+  { id: 6, userId: 3, boardId: 3 }, // only user3 sees Board 3
 ];
 
 export const initialBoardsData = [
-    //не name, а title
-    {id: 1, name: "Board 1", createdBy: 1},
-    {id: 2, name: "Board 2", createdBy: 2},
-    {id: 3, name: "Board 3", createdBy: 3},
+  //не name, а title
+  { id: 1, name: "Board 1", createdBy: 1 },
+  { id: 2, name: "Board 2", createdBy: 2 },
+  { id: 3, name: "Board 3", createdBy: 3 },
 ];
 
 export const initialCardListsData = [
     //name это status
     {id: 1, name: "To Do", order: 0, boardId: 1},
-    {id: 2, name: "In Progress", order: 2, boardId: 1},
-    {id: 3, name: "In Review", order: 1, boardId: 1},
+    {id: 2, name: "In Progress", order: 1, boardId: 1},
+    {id: 3, name: "In Review", order: 2, boardId: 1},
     {id: 4, name: "Done", order: 3, boardId: 1},
     {id: 5, name: "To Do", order: 0, boardId: 2},
     {id: 6, name: "In Progress", order: 1, boardId: 2},
@@ -54,6 +68,7 @@ export const initialCardListsData = [
     {id: 12, name: "Done", order: 3, boardId: 3},
 ];
 export const initialCardsData = [
+
     {
         id: 1,
         name: "task1",

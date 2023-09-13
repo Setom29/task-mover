@@ -36,7 +36,7 @@ export default class CardsTable extends DataTable {
       name: name,
       description: "",
       cardListId: cardListId,
-      order: this.data.filter((item) => item.cardListId === cardListId).length,
+      order: this.getLastCardOrderInCardList(cardListId),
       createdAt: new Date().getTime(),
       createdBy: userId,
       dueTo: dueTo,
@@ -48,7 +48,7 @@ export default class CardsTable extends DataTable {
     this.data = this.data.filter((card) => card.id !== id);
   }
 
-  getPrevCardIdInCardList(cardId) {
+  getPrevCardIdInSameCardList(cardId) {
     const cardToUse = this.getItemById(cardId);
     const arrFilteredCardList = this.data.filter(card => card.cardListId === cardToUse.cardListId && 
                                                 card.order < cardToUse.order);
@@ -56,15 +56,42 @@ export default class CardsTable extends DataTable {
       return null;
     } else 
     {
-      const prevCard = getMaxObjectInArray(arrFilteredCardList, "order");
-      return prevCard.id;
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.id;
     }
   }
+
+  getLastCardIdInCardList(cardListId) {
+    const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
+    if (arrFilteredCardList.length === 0) {
+      return null;
+    } else 
+    {
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.id;
+    }
+  }
+
+  getLastCardOrderInCardList(cardListId) {
+    const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
+    if (arrFilteredCardList.length === 0) {
+      return -1;
+    } else 
+    {
+      const cardToReturn = getMaxObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.order;
+    }
+  }
+
 
   moveCard(cardId, newCardListId, insertAfterCardId) {
     // move card id to card list cardListId, inserting it after card insertAfterCardId; 
     // update orders of later cards belonging to card list cardListId  
     // if insertAfterCardId is null, insert the card as the first card in the card list cardListId
+    if (cardId === insertAfterCardId) {
+      throw Error("There was a try to insert card with existing ID");
+    }
+
     const cardToMove = this.getItemById(cardId);
     const oldCardListId = cardToMove.cardListId; 
     if (oldCardListId === newCardListId) {
@@ -74,17 +101,28 @@ export default class CardsTable extends DataTable {
                           .map(card => card.order)) - 1;
         console.log("same list, insert in beginning")
       } else {
-        const newOrder = this.getItemById(insertAfterCardId).order + 1;
-        this.data.filter(card => card.cardListId === oldCardListId && 
-                                 card.order >= newOrder && 
-                                 card.order < cardToMove.order)
-                  .forEach(card => card.order++);
+        const moveForward = (this.getItemById(insertAfterCardId).order > cardToMove.order);
+        let newOrder;
+        if (moveForward) {
+          newOrder = this.getItemById(insertAfterCardId).order;
+          this.data.filter(card => card.cardListId === oldCardListId && 
+            card.order <= newOrder && 
+            card.order > cardToMove.order)
+                    .forEach(card => card.order--);
+          console.log("same list, insert in middle, move forward")
+        } else {
+          newOrder = this.getItemById(insertAfterCardId).order + 1;
+          this.data.filter(card => card.cardListId === oldCardListId && 
+            card.order >= newOrder && 
+            card.order < cardToMove.order)
+                    .forEach(card => card.order++);
+          console.log("same list, insert in middle, move backward")
+        }
         cardToMove.order = newOrder;
-        console.log("same list, insert in middle")
       }
     } else {
       if (insertAfterCardId === null) {
-        cardToMove.order = Math.max(...this.data
+        cardToMove.order = Math.min(...this.data
                           .filter(card => card.cardListId === newCardListId)
                           .map(card => card.order)) - 1;
         console.log("diff list, insert in beginning")
