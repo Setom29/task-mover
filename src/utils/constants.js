@@ -1,2 +1,3 @@
-export const typeToAcceptDrop = "Card";
+export const dragTypeCard = "Card";
+export const dragTypeCardList = "CardList";
 
