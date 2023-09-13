@@ -9,7 +9,10 @@ const Comment = inject("commentsTable")(
             <Typography variant="caption"
                 sx={{
                     padding: "5px",
-                    color: "green.dark",
+                    color: "blue.dark",
+                    boxShadow: 14,
+                    borderRadius: "5px",
+                    bgcolor: "transparent.light"
                 }}
             >
                 {props.commentsTable.getItemById(props.commentId).text}

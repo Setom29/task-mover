@@ -18,7 +18,7 @@ export default class CommentTable extends DataTable {
             // editComment: action,
             deleteComment: action,
             editItem: action,
-            getCommentByCardId: action,
+
         })
 
     }
@@ -36,7 +36,6 @@ export default class CommentTable extends DataTable {
             user_id: user_id,
             card_id: card_id,
         })
-        console.log(this.data)
     }
 
     // //,user_id, card_id, нужно добавить в параметры в дальнейшем при расширении на множество таблиц.

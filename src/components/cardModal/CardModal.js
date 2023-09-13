@@ -32,14 +32,7 @@ const CardModal = inject(
                     sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
-                        position: 'relative',
-                        height: "60%",
-                        width: "70%",
-                        flexDirection: "column",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        backgroundColor: "blue.contrastText",
+                        backgroundColor: "shades.main",
                         boxShadow: 24,
                         p: 4,
                         m: 4,
@@ -51,10 +44,10 @@ const CardModal = inject(
                             display: "flex",
                             gap: "10px",
                             flexDirection: "column",
-                            position: "absolute",
-                            width: "45%",
-                            left: 20,
-                            top: 40,
+                            width: "48%",
+                            backgroundColor: "blue.contrastText",
+                            borderRadius: "5px",
+                            p: 4,
                         }}
                     >
                         <TextField
@@ -64,30 +57,41 @@ const CardModal = inject(
                             rows={3}
                             value={currentCard.name}
                             onChange={(e) => setCurrentCard({...currentCard, name: e.target.value})}
+                            sx={{
+                                height: "100%",
+                                backgroundColor: "transparent.light",
+                            }}
                         />
 
                         <TextField
                             id="outlined-multiline-static"
                             label="Description"
                             multiline
-                            rows={10}
+                            rows={18}
                             value={currentCard.description}
                             onChange={(e) => setCurrentCard({...currentCard, description: e.target.value})}
+                            sx={{
+                                height: "100%",
+                                backgroundColor: "transparent.light",
+                            }}
                         />
                     </Box>
                     <Box
                         sx={{
                             display: "flex",
                             flexDirection: "column",
-                            position: 'absolute',
                             gap: "10px",
-                            width: "45%",
-                            right: 40,
-                            top: 40,
+                            width: "48%",
+                            backgroundColor: "blue.contrastText",
+                            borderRadius: "5px",
+                            p: 4,
                         }}
                     >
                         <CommentsList cardId={props.modalStateStore.currentCardId}/>
                         <TextField
+                            sx={{
+                                backgroundColor: "transparent.contrastText",
+                            }}
                             variant="outlined"
                             placeholder="Enter your comment:"
                             value={newComment}

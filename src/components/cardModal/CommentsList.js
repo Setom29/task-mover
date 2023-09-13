@@ -6,7 +6,6 @@ import {Box} from "@mui/material";
 const CommentsList = inject(
     "commentsTable",
     "usersTable",
-
 )(
     observer((props) => {
 
@@ -15,22 +14,23 @@ const CommentsList = inject(
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    width: "fit-content",
                     borderRadius: "5px",
-                    backgroundColor: "blue.contrastText",
+                    backgroundColor: "transparent.contrastText",
                     color: "shades.dark",
+                    height: "100%",
                     p: 4,
+
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "5px",
-                        height: "100%",
-                        backgroundColor: "transparent.contrastText",
+                        gap: "15px",
                         borderRadius: "5px",
+                        backgroundColor: "transparent.light",
                     }}
+                    className="no-scrollbar"
                 >
                     {[
                         ...props.commentsTable.getCommentByCardId(props.cardId)
