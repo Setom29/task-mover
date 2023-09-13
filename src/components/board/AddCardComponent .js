@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
 
-import {typeToAcceptDrop} from "../../utils/constants";
+import {dragTypeCard} from "../../utils/constants";
 import { useDrag, useDrop } from "react-dnd";
 
 const AddCardComponent = inject(
@@ -17,8 +17,33 @@ const AddCardComponent = inject(
     const [open, setOpen] = useState(false);
     const [newCardName, setNewCardName] = useState("");
 
+    const handleOK = function() {
+        props.cardsTable.addCard(
+          newCardName,
+          props.cardListId,
+          props.usersTable.currentItem
+        );
+        setOpen(false);
+        setNewCardName("");
+    }
+
+    const handleCancel = function() {
+      setOpen(false);
+      setNewCardName("");
+    }
+
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter'  && event.ctrlKey) {
+        handleOK();
+      } else if (event.key === 'Escape') {
+        handleCancel();
+      }
+    };
+
+
     const [{isSomethingDropping}, drop] = useDrop({
-      accept: typeToAcceptDrop,
+      accept: dragTypeCard,
 
       collect: (monitor) => {
         return {
@@ -29,6 +54,7 @@ const AddCardComponent = inject(
       drop: (item) => {
         const newCardListId = props.cardListId;
         const insertAfterCardId = props.cardsTable.getLastCardIdInCardList(props.cardListId);
+        if (item.cardId === insertAfterCardId) return; // no drop on itself
         props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
       },
 
@@ -65,7 +91,9 @@ const AddCardComponent = inject(
             <Box>
               <TextareaAutosize
                 onChange={(e) => setNewCardName(e.target.value)}
+                onKeyDown={handleKeyDown}
                 value={newCardName}
+                autoFocus
                 sx={{
                   padding: "5px",
                   borderRadius: "5px",
@@ -78,24 +106,13 @@ const AddCardComponent = inject(
                 <IconButton
                   variant="contained"
                   disabled={newCardName === ""}
-                  onClick={() => {
-                    props.cardsTable.addCard(
-                      newCardName,
-                      props.cardListId,
-                      props.usersTable.currentItem
-                    );
-                    setOpen(false);
-                    setNewCardName("");
-                  }}
+                  onClick={handleOK}
                 >
                   <DoneIcon sx={{ color: "transparent.contrastText" }} />
                 </IconButton>
                 <IconButton
                   variant="contained"
-                  onClick={() => {
-                    setOpen(false);
-                    setNewCardName("");
-                  }}
+                  onClick={handleCancel}
                 >
                   <CloseIcon sx={{ color: "transparent.contrastText" }} />
                 </IconButton>

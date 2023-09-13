@@ -53,19 +53,19 @@ export const initialBoardsData = [
 ];
 
 export const initialCardListsData = [
-  //name это status
-  { id: 1, name: "To Do", order: 0, boardId: 1 },
-  { id: 2, name: "In Progress", order: 2, boardId: 1 },
-  { id: 3, name: "In Review", order: 1, boardId: 1 },
-  { id: 4, name: "Done", order: 3, boardId: 1 },
-  { id: 5, name: "To Do", order: 0, boardId: 2 },
-  { id: 6, name: "In Progress", order: 1, boardId: 2 },
-  { id: 7, name: "In Review", order: 2, boardId: 2 },
-  { id: 8, name: "Done", order: 3, boardId: 2 },
-  { id: 9, name: "To Do", order: 0, boardId: 3 },
-  { id: 10, name: "In Progress", order: 1, boardId: 3 },
-  { id: 11, name: "In Review", order: 2, boardId: 3 },
-  { id: 12, name: "Done", order: 3, boardId: 3 },
+    //name это status
+    {id: 1, name: "To Do", order: 0, boardId: 1},
+    {id: 2, name: "In Progress", order: 1, boardId: 1},
+    {id: 3, name: "In Review", order: 2, boardId: 1},
+    {id: 4, name: "Done", order: 3, boardId: 1},
+    {id: 5, name: "To Do", order: 0, boardId: 2},
+    {id: 6, name: "In Progress", order: 1, boardId: 2},
+    {id: 7, name: "In Review", order: 2, boardId: 2},
+    {id: 8, name: "Done", order: 3, boardId: 2},
+    {id: 9, name: "To Do", order: 0, boardId: 3},
+    {id: 10, name: "In Progress", order: 1, boardId: 3},
+    {id: 11, name: "In Review", order: 2, boardId: 3},
+    {id: 12, name: "Done", order: 3, boardId: 3},
 ];
 export const initialCardsData = [
   {
