@@ -1,5 +1,12 @@
 import { observer, inject } from "mobx-react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+  Box,
+} from "@mui/material";
 
 const BoardsSelect = inject(
   "boardsTable",
@@ -17,26 +24,42 @@ const BoardsSelect = inject(
         board.id
       );
     };
+    const availableBoards = props.usersInBoardsTable.getBoardIdsByUserId(
+      props.usersTable.currentId
+    );
 
     return (
-      <FormControl fullWidth color="shades">
-        <InputLabel id="board-select-label">Board</InputLabel>
-        <Select
-          labelId="board-select-label"
-          id="board-select"
-          value={props.boardsTable.currentItem.id}
-          label="Board"
-          onChange={handleChange}
-        >
-          {props.boardsTable.data
-            .filter((b) => isCurrentUserInBoard(b))
-            .map((b) => (
-              <MenuItem value={b.id} key={b.id}>
-                {b.name}
-              </MenuItem>
-            ))}
-        </Select>
-      </FormControl>
+      <Box>
+        {availableBoards.length !== 0 ? (
+          <FormControl fullWidth color="shades">
+            <InputLabel id="board-select-label">Board</InputLabel>
+            <Select
+              labelId="board-select-label"
+              id="board-select"
+              value={props.boardsTable.currentId ?? ""}
+              label="Board"
+              onChange={handleChange}
+            >
+              {availableBoards.map((boardId) => {
+                const board = props.boardsTable.getItemById(boardId);
+                return (
+                  <MenuItem value={board.id} key={board.id}>
+                    {board.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        ) : (
+          <Typography
+            variant="p"
+            color="transparent.contrastText"
+            sx={{ textAlign: "center" }}
+          >
+            No boards available
+          </Typography>
+        )}
+      </Box>
     );
   })
 );
