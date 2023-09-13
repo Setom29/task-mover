@@ -55,7 +55,6 @@ export const initialCardListsData = [
 ];
 export const initialCardsData = [
     {
-        //не name, а task
         id: 1,
         name: "task1",
         description: "d1",
@@ -159,16 +158,64 @@ export const initialCardsData = [
 export const initialComments = [
     {
         id: 1,
-        text: "Comment",
-        created_at: "",
+        text: "1",
+        created_at: 0,
         user_id: 1,
         card_id: 1
 
     },
     {
         id: 2,
-        text: "Comment",
-        created_at: "",
+        text: "2",
+        created_at: 1,
+        user_id: 2,
+        card_id: 1
+
+    },
+    {
+        id: 3,
+        text: "3",
+        created_at: 2,
+        user_id: 1,
+        card_id: 1
+
+    },
+    {
+        id: 4,
+        text: "4",
+        created_at: 3,
+        user_id: 2,
+        card_id: 1
+
+    },
+    {
+        id: 5,
+        text: "5",
+        created_at: 4,
+        user_id: 1,
+        card_id: 1
+
+    },
+    {
+        id: 6,
+        text: "6",
+        created_at: 5,
+        user_id: 2,
+        card_id: 1
+
+    },
+    {
+        id: 7,
+        text: "7",
+        created_at: 6,
+        user_id: 1,
+        card_id: 1
+
+    },
+    {
+        id: 8,
+        text: "8",
+        created_at: 7,
         user_id: 2,
         card_id: 1
 
