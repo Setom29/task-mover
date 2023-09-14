@@ -41,4 +41,9 @@ export class DataTable {
     this.data = this.data.filter((item) => item.id !== newItem.id);
     this.data.push(newItem)
   }
+
+  updateData(newData) {
+    this.data = [...newData];
+    this.lastId = newData[newData.length - 1].id;
+  }
 }

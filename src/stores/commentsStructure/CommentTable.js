@@ -19,6 +19,7 @@ export default class CommentTable extends DataTable {
             deleteComment: action,
             editItem: action,
             getCommentByCardId: action,
+            updateData: action
         })
 
     }
