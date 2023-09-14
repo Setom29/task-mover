@@ -8,7 +8,7 @@ export default class CommentTable extends DataTable {
         super();
         this.data = initialComments;
         this.currentId = this.data[0].id;
-        this.lastId = getMaxObjectInArray(this.data, "id");
+        this.lastId = getMaxObjectInArray(this.data, "id").id;
 
         makeObservable(this, {
             data: observable,

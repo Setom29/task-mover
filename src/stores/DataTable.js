@@ -45,6 +45,6 @@ export class DataTable {
 
   updateData(newData) {
     this.data = [...newData];
-    this.lastId = getMaxObjectInArray(newData, "id");
+    this.lastId = getMaxObjectInArray(newData, "id").id;
   }
 }
