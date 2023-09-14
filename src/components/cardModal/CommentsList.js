@@ -5,7 +5,6 @@ import {Box} from "@mui/material";
 
 const CommentsList = inject(
     "commentsTable",
-    "usersTable",
 )(
     observer((props) => {
 
@@ -17,7 +16,7 @@ const CommentsList = inject(
                     borderRadius: "5px",
                     backgroundColor: "transparent.contrastText",
                     color: "shades.dark",
-                    height: "100%",
+                    height: 490,
                     p: 4,
 
                 }}
@@ -26,9 +25,12 @@ const CommentsList = inject(
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "15px",
+                        gap: "5px",
                         borderRadius: "5px",
                         backgroundColor: "transparent.light",
+                        boxShadow: 2,
+                        flexGrow: 1,
+                        overflow: "auto",
                     }}
                     className="no-scrollbar"
                 >
@@ -38,7 +40,7 @@ const CommentsList = inject(
 
                         .sort((a, b) => a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0)
                         .map((comment) => (
-                            <Comment key={comment.id} commentId={comment.id}/>
+                            <Comment key={comment.id} commentId={comment.id} ownerComment={comment.user_id}/>
                         ))}
                 </Box>
             </Box>

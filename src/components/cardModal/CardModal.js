@@ -60,6 +60,7 @@ const CardModal = inject(
                             sx={{
                                 height: "100%",
                                 backgroundColor: "transparent.light",
+                                boxShadow: 2,
                             }}
                         />
 
@@ -73,6 +74,7 @@ const CardModal = inject(
                             sx={{
                                 height: "100%",
                                 backgroundColor: "transparent.light",
+                                boxShadow: 2,
                             }}
                         />
                     </Box>
