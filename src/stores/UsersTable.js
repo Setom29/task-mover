@@ -1,13 +1,14 @@
 import { observable, computed, action, makeObservable } from "mobx";
 import { initialUsersData } from "./initialData";
 import { DataTable } from "./DataTable";
+import { getMaxObjectInArray } from "../utils/arrays";
 
 export class UsersTable extends DataTable {
   constructor() {
     super();
     this.data = initialUsersData;
     this.currentId = this.data[0].id; // it doesn't use dynamic data from Users.js -> play with index [0-1-2]
-    this.lastId = this.data[this.data.length - 1].id;
+    this.lastId = getMaxObjectInArray(this.data, "id");
 
     makeObservable(this, {
       data: observable,

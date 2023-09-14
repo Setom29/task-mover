@@ -1,13 +1,14 @@
 import {action, computed, makeObservable, observable} from "mobx";
 import {initialComments} from "../initialData";
 import {DataTable} from "../DataTable";
+import { getMaxObjectInArray } from "../../utils/arrays";
 
 export default class CommentTable extends DataTable {
     constructor() {
         super();
         this.data = initialComments;
         this.currentId = this.data[0].id;
-        this.lastId = this.data[this.data.length - 1].id;
+        this.lastId = getMaxObjectInArray(this.data, "id");
 
         makeObservable(this, {
             data: observable,

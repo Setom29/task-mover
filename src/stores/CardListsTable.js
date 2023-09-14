@@ -14,7 +14,7 @@ export default class CardListsTable extends DataTable {
     super();
     this.data = initialCardListsData;
     this.currentId = this.data[0].id;
-    this.lastId = this.data[this.data.length - 1].id;
+    this.lastId = getMaxObjectInArray(this.data, "id");
 
     makeObservable(this, {
       data: observable,

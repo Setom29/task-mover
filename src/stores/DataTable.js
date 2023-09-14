@@ -1,4 +1,5 @@
 import { observable, computed, action, makeObservable } from "mobx";
+import { getMaxObjectInArray } from "../utils/arrays";
 
 export class DataTable {
   constructor() {
@@ -44,6 +45,6 @@ export class DataTable {
 
   updateData(newData) {
     this.data = [...newData];
-    this.lastId = newData[newData.length - 1].id;
+    this.lastId = getMaxObjectInArray(newData, "id");
   }
 }
