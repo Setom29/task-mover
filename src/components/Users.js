@@ -16,7 +16,7 @@ const Users = inject(
 )(
   observer((props) => {
     const changeCurrentUser = function (e) {
-      console.log(e.target.value);
+      console.log(`current user ${e.target.value}`);
       props.usersTable.changeCurrentItemId(Number(e.target.value));
     };
 
