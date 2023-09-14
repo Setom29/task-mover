@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { observer, inject } from "mobx-react";
 import {
   Box,
-  Button,
-  Popover,
-  IconButton,
-  TextField,
-  Toolbar,
 } from "@mui/material";
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
-import UsersWorking from "../appBar/UsersWorking";
+import UsersWorking from "./UsersWorking";
 import AddCardListComponent from "./AddCardListComponent";
 const BoardHeader = inject(
   "cardListsTable",
@@ -41,7 +37,7 @@ const BoardHeader = inject(
           padding: "10px",
         }}
       >
-        <AddCardListComponent/>
+        <AddCardListComponent />
         {/* <Popover
           open={open}
           anchorEl={anchorEl}
@@ -84,8 +80,7 @@ const BoardHeader = inject(
           </Box>
         </Popover> */}
 
-
-        <UsersWorking/>
+        <UsersWorking />
       </Box>
     );
   })

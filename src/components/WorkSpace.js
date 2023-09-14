@@ -11,16 +11,25 @@ import ChatPopup from "./chat/ChatPopup";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { initialMessages } from "../utils/constants";
+
 
 const actions = [{ icon: <ChatIcon />, name: "Chat" }];
 
 const WorkSpace = inject(
   "usersTable",
   "boardsTable",
-  "modalStateStore"
+  "modalStateStore",
+  "usersInBoardsTable"
 )(
   observer((props) => {
     const [openPopup, setOpenPopup] = useState(false);
+    const [messages, setMessages] = useState(initialMessages);
+
+    const availableBoardIds = props.usersInBoardsTable.getBoardIdsByUserId(
+      props.usersTable.currentId
+    );
+
     return (
       <Box
         sx={{
@@ -30,7 +39,7 @@ const WorkSpace = inject(
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
-          background: " rgb(128,173,215)",
+         // background: " rgb(128,173,215)",
           background:
             "linear-gradient(135deg, rgba(128,173,215,1) 0%, rgba(10,189,160,1) 35%, rgba(212,220,169,1) 100%)",
         }}
@@ -44,14 +53,16 @@ const WorkSpace = inject(
           }}
         >
           <SideNavBar />
-          <DndProvider backend={HTML5Backend}>
-            <Board boardId={props.boardsTable.currentId} />
-          </DndProvider>
+          {props.boardsTable.currentId !== null ? (
+            <DndProvider backend={HTML5Backend}>
+              <Board boardId={props.boardsTable.currentId} />
+            </DndProvider>
+          ) : null}
         </Box>
         {props.modalStateStore.open ? <CardModal /> : null}
 
         {openPopup ? (
-          <ChatPopup setOpenPopup={setOpenPopup} openPopup={openPopup} />
+          <ChatPopup setOpenPopup={setOpenPopup} openPopup={openPopup} messages= {messages} setMessages={setMessages} />
         ) : (
           <IconButton
             onClick={() => setOpenPopup(true)}

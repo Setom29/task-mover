@@ -10,20 +10,14 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import { makeRequest } from "../../requests/makeRequest";
 
-const initialMessages = [
-  { id: 0, text: "Hello, how can i assist you today?", sender: "bot" },
-];
-
-const ChatUI = () => {
+const ChatUI = (props) => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState(initialMessages);
-
   const messagesEndRef = useRef(null);
   const handleSend = (e) => {
-    console.log(input)
+    console.log(input);
     if (input.trim() !== "") {
-      setMessages([
-        ...messages,
+      props.setMessages([
+        ...props.messages,
         { id: new Date().getTime(), text: input, sender: "user" },
       ]);
       setInput("");
@@ -31,10 +25,10 @@ const ChatUI = () => {
   };
 
   useEffect(() => {
-    if (messages[messages.length - 1].sender === "user") {
-      makeRequest(messages, setMessages);
+    if (props.messages[props.messages.length - 1].sender === "user") {
+      makeRequest(props.messages, props.setMessages);
     }
-  }, [messages]);
+  }, [props.messages]);
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
@@ -42,7 +36,7 @@ const ChatUI = () => {
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [props.messages]);
 
   return (
     <Box
@@ -58,7 +52,7 @@ const ChatUI = () => {
         sx={{ flexGrow: 1, overflow: "auto", p: 2 }}
         className="no-scrollbar"
       >
-        {messages.map((message) => (
+        {props.messages.map((message) => (
           <Message key={message.id} message={message} />
         ))}
         <Box ref={messagesEndRef} style={{ float: "left", clear: "both" }} />

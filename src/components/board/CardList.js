@@ -82,7 +82,6 @@ const CardList = inject(
           : null}
         <Box
           sx={{
-            // display: "flex",
             flexDirection: "column",
             gap: "5px",
             width: "200px",
@@ -90,7 +89,7 @@ const CardList = inject(
             padding: "5px",
             backgroundColor: "shades.main",
             borderRadius: "5px",
-            display: isDragging ? "none" : "flex"
+            display: isDragging ? "none" : "flex",
           }}
         >
           <Box

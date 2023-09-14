@@ -9,11 +9,22 @@ import CardActions from "@mui/material/CardActions";
 import Divider from "@mui/material/Divider";
 import { Stack } from "@mui/system";
 
-const Users = inject("usersTable")(
+const Users = inject(
+  "usersTable",
+  "usersInBoardsTable",
+  "boardsTable"
+)(
   observer((props) => {
     const changeCurrentUser = function (e) {
       console.log(e.target.value);
       props.usersTable.changeCurrentItemId(Number(e.target.value));
+    };
+
+    const setCurrentBoard = function (e) {
+      const availableBoardIds = props.usersInBoardsTable.getBoardIdsByUserId(
+        Number(e.target.value)
+      );
+      props.boardsTable.changeCurrentItemId(availableBoardIds[0]);
     };
     let users = [...props.usersTable.data];
     return (
@@ -37,7 +48,10 @@ const Users = inject("usersTable")(
               return (
                 <Link to="/workspace" key={index}>
                   <Button
-                    onClick={changeCurrentUser}
+                    onClick={(e) => {
+                      changeCurrentUser(e);
+                      setCurrentBoard(e);
+                    }}
                     value={user.id}
                     variant="outlined"
                     size="small"
