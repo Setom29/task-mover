@@ -1,7 +1,9 @@
-import { Backdrop, Button, Stack, Typography } from "@mui/material";
+import { Backdrop, Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import UsersSimple from "./UsersSimple";
 import { Link } from "react-router-dom";
+import Export from "./Export";
+import Import from "./Import";
 
 export default function SideNavBar() {
   return (
@@ -16,6 +18,10 @@ export default function SideNavBar() {
       // Seems there's no way to make it with preset MUI colors
     >
       <UsersSimple />
+      <Box>
+        <Export/>
+        <Import/>
+      </Box>
       <Link to="/" style={{ textDecoration: "none", width: "100%", display: "block"}}>
         <Button variant="contained" color="transparent" sx={{width: "100%", borderRadius: "0"}}>Log out</Button>
       </Link>

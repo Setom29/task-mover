@@ -24,7 +24,8 @@ export default class CardsTable extends DataTable {
       addCard: action,
       deleteCard: action,
       editItem: action,
-      moveCard: action
+      moveCard: action,
+      updateData: action
     });
   }
 

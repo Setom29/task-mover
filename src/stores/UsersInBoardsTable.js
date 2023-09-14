@@ -17,6 +17,7 @@ export class UsersInBoardsTable extends DataTable {
       currentItem: computed,
       addUserInBoard: action,
       editItem: action,
+      updateData: action
     });
   }
 
