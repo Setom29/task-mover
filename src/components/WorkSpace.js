@@ -33,6 +33,8 @@ const WorkSpace = inject(
       props.usersTable.currentId
     );
 
+    console.log(props.boardsTable.currentId)
+
     return (
       <Box
         sx={{
@@ -56,7 +58,8 @@ const WorkSpace = inject(
           }}
         >
           <SideNavBar />
-          {props.boardsTable.currentId !== null ? (
+          {props.boardsTable.currentId !== null &&
+          props.boardsTable.currentId !== undefined ? (
             <DndProvider backend={HTML5Backend}>
               <Board boardId={props.boardsTable.currentId} />
             </DndProvider>
