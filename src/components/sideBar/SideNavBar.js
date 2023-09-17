@@ -17,11 +17,12 @@ export default function SideNavBar() {
       // we'll have opacity when we set our palette, defining colors via rgba().
       // Seems there's no way to make it with preset MUI colors
     >
+      <Box sx={{width:"100%", display: "flex", flexDirection: "column", justifyContent: "start", gap: "10px"}}>
       <UsersSimple />
-      <Box sx={{width:"100%"}}>
+      
         <Export/>
         <Import/>
-        </Box>
+      </Box>
       <Link to="/" style={{ textDecoration: "none", width: "100%", display: "block"}}>
         <Button variant="contained" color="transparent" sx={{width: "100%", borderRadius: "0"}}>Log out</Button>
       </Link>

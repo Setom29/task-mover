@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
+
 import {
   Box,
   TextField,
@@ -11,11 +13,13 @@ import SendIcon from "@mui/icons-material/Send";
 import { makeRequest } from "../../requests/makeRequest";
 
 const ChatUI = (props) => {
+  const [loadingStatus, setLoadingStatus] = useState(false)
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
   const handleSend = (e) => {
     console.log(input);
     if (input.trim() !== "") {
+      setLoadingStatus(true)
       props.setMessages([
         ...props.messages,
         { id: new Date().getTime(), text: input, sender: "user" },
@@ -36,6 +40,7 @@ const ChatUI = (props) => {
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    setLoadingStatus(false)
   }, [props.messages]);
 
   return (
@@ -71,9 +76,10 @@ const ChatUI = (props) => {
             />
           </Grid>
           <Grid item xs={2}>
-            <IconButton color="shades" onClick={handleSend}>
-              <SendIcon />
-            </IconButton>
+            {loadingStatus ? <CircularProgress  size="2.5rem"/> :
+              <IconButton color="shades" onClick={handleSend} disabled={input.trim() === "" || props.apiKeysData.isEntered === false}>
+                <SendIcon />
+              </IconButton>}
           </Grid>
         </Grid>
       </Box>
