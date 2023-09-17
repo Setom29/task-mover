@@ -22,7 +22,7 @@ const Export = inject(...arrAllTables)(
     }
 
     return ( 
-        <Button variant="outlined" color="shades" onClick={saveToFile} sx={{width: "100%", borderRadius: "0"}}>Export data</Button>
+        <Button variant="contained" color="transparent" onClick={saveToFile} sx={{width: "100%", borderRadius: "0"}}>Export data</Button>
      );
     }));
 

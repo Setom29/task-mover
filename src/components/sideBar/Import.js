@@ -72,7 +72,7 @@ const Import = inject(...arrAllTables)(
             //         </Button>
             //     </InputLabel> 
             // </Box>
-            <Button component="label" variant="outlined" color="shades">
+            <Button component="label" variant="contained" color="transparent">
                 Import data
                 <VisuallyHiddenInput type="file"
                     onChange={handleFileChange}
