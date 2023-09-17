@@ -9,18 +9,6 @@ const CommentsList = inject(
     observer((props) => {
 
         return (
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    borderRadius: "5px",
-                    backgroundColor: "transparent.contrastText",
-                    color: "shades.dark",
-                    height: 490,
-                    p: 4,
-
-                }}
-            >
                 <Box
                     sx={{
                         display: "flex",
@@ -31,6 +19,7 @@ const CommentsList = inject(
                         boxShadow: 2,
                         flexGrow: 1,
                         overflow: "auto",
+                        p: 1,
                     }}
                     className="no-scrollbar"
                 >
@@ -43,8 +32,6 @@ const CommentsList = inject(
                             <Comment key={comment.id} commentId={comment.id} ownerComment={comment.user_id}/>
                         ))}
                 </Box>
-            </Box>
-
         )
     })
 )

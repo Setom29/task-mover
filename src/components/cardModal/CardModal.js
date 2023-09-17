@@ -20,6 +20,27 @@ const CardModal = inject(
         const [currentCard, setCurrentCard] = useState(props.cardsTable.getItemById(props.modalStateStore.currentCardId));
         const [newComment, setNewComment] = useState("")
 
+        const handleOK = function() {
+            props.commentsTable.addComment(
+                newComment,
+                props.usersTable.currentItem.id,
+                props.modalStateStore.currentCardId,
+            )
+            setNewComment("");
+        }
+
+        const handleCancel = function() {
+            setNewComment("");
+        }
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                handleOK();
+            } else if (event.key === 'Escape') {
+                handleCancel();
+            }
+        };
+
         return (
             <Modal
                 open={open}
@@ -31,11 +52,11 @@ const CardModal = inject(
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        justifyContent: 'space-evenly',
                         backgroundColor: "shades.main",
                         boxShadow: 24,
                         p: 4,
-                        m: 4,
+                        m: 16,
                         borderRadius: "5px",
                     }}
                 >
@@ -97,6 +118,7 @@ const CardModal = inject(
                             variant="outlined"
                             placeholder="Enter your comment:"
                             value={newComment}
+                            onKeyDown={handleKeyDown}
                             onChange={(e) => setNewComment(e.target.value)}
                             InputProps={{
                                 endAdornment: (

@@ -18,15 +18,13 @@ const Comment = inject(
                 fontSize: "100%",
                 borderRadius: "5px",
                 bgcolor: "transparent.light",
-                paddingInlineEnd: 2,
-                paddingInlineStart: 2,
                 boxShadow: 2,
 
             }}>
                 <Typography variant="caption" sx={{
                     overflowWrap: 'break-word',
                     wordWrap: 'break-word',
-                    width: 350,
+                    width: "80%",
                 }}>
                     {props.commentsTable.getItemById(props.commentId).text}
                 </Typography>
