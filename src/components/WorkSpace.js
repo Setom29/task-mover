@@ -13,7 +13,6 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { initialMessages } from "../utils/constants";
 
-
 const actions = [{ icon: <ChatIcon />, name: "Chat" }];
 
 const WorkSpace = inject(
@@ -25,6 +24,10 @@ const WorkSpace = inject(
   observer((props) => {
     const [openPopup, setOpenPopup] = useState(false);
     const [messages, setMessages] = useState(initialMessages);
+    const [apiKeysData, setApiKeysData] = useState({
+      key: "",
+      isEntered: false,
+    });
 
     const availableBoardIds = props.usersInBoardsTable.getBoardIdsByUserId(
       props.usersTable.currentId
@@ -39,7 +42,7 @@ const WorkSpace = inject(
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
-         // background: " rgb(128,173,215)",
+          // background: " rgb(128,173,215)",
           background:
             "linear-gradient(135deg, rgba(128,173,215,1) 0%, rgba(10,189,160,1) 35%, rgba(212,220,169,1) 100%)",
         }}
@@ -62,7 +65,14 @@ const WorkSpace = inject(
         {props.modalStateStore.open ? <CardModal /> : null}
 
         {openPopup ? (
-          <ChatPopup setOpenPopup={setOpenPopup} openPopup={openPopup} messages= {messages} setMessages={setMessages} />
+          <ChatPopup
+            setOpenPopup={setOpenPopup}
+            openPopup={openPopup}
+            messages={messages}
+            setMessages={setMessages}
+            apiKeysData={apiKeysData}
+            setApiKeysData={setApiKeysData}
+          />
         ) : (
           <IconButton
             onClick={() => setOpenPopup(true)}

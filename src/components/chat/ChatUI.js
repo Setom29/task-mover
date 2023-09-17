@@ -26,7 +26,7 @@ const ChatUI = (props) => {
 
   useEffect(() => {
     if (props.messages[props.messages.length - 1].sender === "user") {
-      makeRequest(props.messages, props.setMessages);
+      makeRequest(props.apiKeysData.key, props.messages, props.setMessages);
     }
   }, [props.messages]);
 
