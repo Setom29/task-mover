@@ -9,23 +9,38 @@ export default function SideNavBar() {
   return (
     <Stack
       direction="column"
-      justifyContent="start"
+      justifyContent="space-between"
       spacing={0}
       bgcolor="shades.light"
-      sx = {{minWidth: "150px"}}
+      sx={{ minWidth: "150px" }}
       // we'll have opacity when we set our palette, defining colors via rgba().
       // Seems there's no way to make it with preset MUI colors
     >
-      {/* <Box sx={{width:"100%", display: "flex", flexDirection: "column", justifyContent: "start", gap: "10px"}}> */}
-      {/* <UsersSimple /> */}
-      
-        <Export/>
-        <Import/>
-      {/* </Box> */}
-      <Link to="/" style={{ textDecoration: "none", width: "100%", display: "block"}}>
-        <Button variant="contained" color="transparent" sx={{width: "100%", borderRadius: "0"}}>Log out</Button>
-      </Link>
-
+      <UsersSimple />
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "start",
+          gap: "10px",
+        }}
+      >
+        <Export />
+        <Import />
+        <Link
+          to="/"
+          style={{ textDecoration: "none", width: "100%", display: "block" }}
+        >
+          <Button
+            variant="contained"
+            color="transparent"
+            sx={{ width: "100%", borderRadius: "0" }}
+          >
+            Log out
+          </Button>
+        </Link>
+      </Box>
     </Stack>
   );
 }
