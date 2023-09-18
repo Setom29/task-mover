@@ -70,7 +70,7 @@ const CardList = inject(
           justifyContent: "start",
           alignItems: "start",
           height: "fit-content",
-        }}
+      }}
       >
         {/* first part is an empty box that imitates empty space for dropping, if isSomethingDropping */}
         {isSomethingDropping ? (
@@ -95,21 +95,6 @@ const CardList = inject(
             backgroundColor: "shades.main",
             borderRadius: "5px",
             display: isDragging ? "none" : "flex",
-            '&::-webkit-scrollbar': {
-              height: '0.5em',
-            },
-            '&::-webkit-scrollbar-track': {
-              boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-              webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
-            },
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: 'rgba(0,0,0,.1)',
-              outline: '1px solid slategrey'
-            },
-            '&::-webkit-scrollbar-track-piece': {
-              backgroundColor: 'rgba(0,0,0,.2)'
-            }
-
           }}
         >
           <Box
@@ -127,7 +112,26 @@ const CardList = inject(
             </IconButton>
           </Box>
           {/* filter cards by cardListId and display them in the correct order */}
-          <Box className="no-scrollbar" sx={{display: "flex", flexDirection: "column", gap: "5px", overflow: "auto", maxHeight: "58vh" }}>
+          <Box sx={{display: "flex", flexDirection: "column", 
+                  gap: "5px", overflow: "auto", 
+                  maxHeight: "58vh",
+                  '&::-webkit-scrollbar': {
+                    width: '0.25em',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+                    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'lights.dark',
+                    outline: '1px solid slategrey'
+                  },
+                  '&::-webkit-scrollbar-track-piece': {
+                    backgroundColor: 'lights.contrastText'
+                  },
+                  scrollbarWidth: '0.25em',
+                  scrollbarColor: 'lights.dark'
+            }}>
             {[
               ...props.cardsTable.data.filter(
                 (card) => card.cardListId === props.cardListId

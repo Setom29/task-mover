@@ -47,12 +47,14 @@ const Board = inject("cardListsTable")(
               webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
             },
             '&::-webkit-scrollbar-thumb': {
-              backgroundColor: 'rgba(0,0,0,.1)',
+              backgroundColor: 'shades.light',
               outline: '1px solid slategrey'
             },
             '&::-webkit-scrollbar-track-piece': {
-              backgroundColor: 'rgba(0,0,0,.2)'
-            }
+              backgroundColor: 'shades.contrastText'
+            },
+            scrollbarWidth: '0.25em',
+            scrollbarColor: 'shades.light'
           
           }}
         >
