@@ -18,13 +18,14 @@ export default function SideNavBar() {
       // Seems there's no way to make it with preset MUI colors
     >
       <UsersSimple />
-      <Box>
+      <Box sx={{width:"100%"}}>
         <Export/>
         <Import/>
-      </Box>
+        </Box>
       <Link to="/" style={{ textDecoration: "none", width: "100%", display: "block"}}>
         <Button variant="contained" color="transparent" sx={{width: "100%", borderRadius: "0"}}>Log out</Button>
       </Link>
+
     </Stack>
   );
 }

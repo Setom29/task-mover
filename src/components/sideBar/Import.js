@@ -63,7 +63,8 @@ const Import = inject(...arrAllTables)(
                 <Button variant="outlined" 
                         sx={{width: "100%", 
                         borderRadius: "0", 
-                        display: isInputVisible ? "none" : "block"}}
+                        display: isInputVisible ? "none" : "block", 
+                        whiteSpace: "normal "}}
                         onClick={() => setIsInputVisible(true)}>
                     Import from JSON
                 </Button>
