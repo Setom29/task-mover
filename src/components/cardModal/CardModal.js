@@ -25,67 +25,71 @@ const CardModal = inject(
     );
     const [newComment, setNewComment] = useState("");
 
-    return (
-      <Modal
-        open={open}
-        onClose={() => {
-          props.cardsTable.editItem({ ...currentCard });
-          toggle(props.modalStateStore.currentCardId);
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "shades.main",
-            boxShadow: 24,
-            p: 4,
-            m: 4,
-            borderRadius: "5px",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              gap: "10px",
-              flexDirection: "column",
-              width: "48%",
-              backgroundColor: "blue.contrastText",
-              borderRadius: "5px",
-              p: 4,
-            }}
-          >
-            <Box sx={{ display: "flex", gap: "10px" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  width: "30%",
-                  height: "100%",
-                  border: "1px solid",
-                  borderColor: "shades.main",
-                  borderRadius: "5px",
+        const handleOK = function() {
+            props.commentsTable.addComment(
+                newComment,
+                props.usersTable.currentItem.id,
+                props.modalStateStore.currentCardId,
+            )
+            setNewComment("");
+        }
+
+        const handleCancel = function() {
+            setNewComment("");
+        }
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                handleOK();
+            } else if (event.key === 'Escape') {
+                handleCancel();
+            }
+        };
+
+        return (
+            <Modal
+                open={open}
+                onClose={() => {
+                    props.cardsTable.editItem({...currentCard})
+                    toggle(props.modalStateStore.currentCardId);
                 }}
-              >
-                {/* <Typography>{currentCard.createdAt}</Typography>
-                <Typography>{props.usersTable.getItemById(currentCard.createdBy)}</Typography> */}
-              </Box>
-              <TextField
-                id="outlined-multiline-static"
-                label="Title"
-                multiline
-                rows={3}
-                value={currentCard.name}
-                onChange={(e) =>
-                  setCurrentCard({ ...currentCard, name: e.target.value })
-                }
-                sx={{
-                  height: "100%",
-                  width: "100%",
-                  backgroundColor: "transparent.light",
-                  boxShadow: 2,
-                }}
-              />
-            </Box>
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-evenly',
+                        backgroundColor: "shades.main",
+                        boxShadow: 24,
+                        p: 4,
+                        m: 16,
+                        borderRadius: "5px",
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: "10px",
+                            flexDirection: "column",
+                            width: "48%",
+                            backgroundColor: "blue.contrastText",
+                            borderRadius: "5px",
+                            p: 4,
+                        }}
+                    >
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Title"
+                            multiline
+                            rows={3}
+                            value={currentCard.name}
+                            onChange={(e) => setCurrentCard({...currentCard, name: e.target.value})}
+                            sx={{
+                                height: "100%",
+                                backgroundColor: "transparent.light",
+                                boxShadow: 2,
+                            }}
+                        />
+
 
             <TextField
               id="outlined-multiline-static"
@@ -138,17 +142,44 @@ const CardModal = inject(
                       }}
                       edge="end"
                     >
-                      <AddCommentIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
-        </Box>
-      </Modal>
-    );
-  })
+
+                        <CommentsList cardId={props.modalStateStore.currentCardId}/>
+                        <TextField
+                            sx={{
+                                backgroundColor: "transparent.contrastText",
+                            }}
+                            variant="outlined"
+                            placeholder="Enter your comment:"
+                            value={newComment}
+                            onKeyDown={handleKeyDown}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            disabled={newComment === ""}
+                                            onClick={
+                                                () => {
+                                                    props.commentsTable.addComment(
+                                                        newComment,
+                                                        props.usersTable.currentItem.id,
+                                                        props.modalStateStore.currentCardId,
+                                                    )
+                                                    setNewComment("")
+                                                }
+                                            } edge="end">
+                                            <AddCommentIcon/>
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Box>
+                </Box>
+            </Modal>
+        );
+    })
+
 );
 
 export default CardModal;
