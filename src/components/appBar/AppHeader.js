@@ -2,7 +2,7 @@ import { observer, inject } from "mobx-react";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import BoardsSelect from "./BoardsSelect";
 import AddBoardComponent from "./AddBoardComponent";
-import imgLogo from "../../assets/logo-small-yellow-light.png";
+import imgLogo from "../../assets/logo-master-new.png";
 import { AccountCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -33,7 +33,7 @@ const AppHeader = inject("usersTable")(
               component="img"
               src={imgLogo}
               alt="Logo"
-              sx={{ borderRadius: "10px", objectFit: "cover" }}
+              sx={{ borderRadius: "10px", objectFit: "cover", width: "120px", height: "60px"}}
             />
             <BoardsSelect />
             <AddBoardComponent />
