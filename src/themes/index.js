@@ -21,6 +21,12 @@ const theme = createTheme({
       dark: "rgba(0, 0, 0, 0.7)",
       contrastText: "rgba(0, 0, 0, 0.4)",
     },
+    lights: {
+      main: "rgba(255, 255, 255, 0.5)",
+      light: "rgba(255, 255, 255, 0.8)",
+      dark: "rgba(255, 255, 255, 0.3)",
+      contrastText: "rgba(255, 255, 255, 0.4)",
+    },
 
     transparent: {
       main: "rgba(0, 0, 0, 0)",

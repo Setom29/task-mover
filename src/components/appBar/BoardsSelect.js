@@ -31,19 +31,20 @@ const BoardsSelect = inject(
     return (
       <Box>
         {availableBoards.length !== 0 ? (
-          <FormControl fullWidth color="shades">
-            <InputLabel id="board-select-label">Board</InputLabel>
+          <FormControl fullWidth color="lights">
+            <InputLabel id="board-select-label" color="lights">Board</InputLabel>
             <Select
               labelId="board-select-label"
               id="board-select"
               value={props.boardsTable.currentId ?? ""}
               label="Board"
               onChange={handleChange}
+              color="lights"
             >
               {availableBoards.map((boardId) => {
                 const board = props.boardsTable.getItemById(boardId);
                 return (
-                  <MenuItem value={board.id} key={board.id}>
+                  <MenuItem value={board.id} key={board.id} color="lights">
                     {board.name}
                   </MenuItem>
                 );
@@ -53,8 +54,8 @@ const BoardsSelect = inject(
         ) : (
           <Typography
             variant="p"
-            color="transparent.contrastText"
-            sx={{ textAlign: "center" }}
+            color="lights.light"
+            textAlign="center"
           >
             No boards available
           </Typography>
