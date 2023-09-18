@@ -13,8 +13,10 @@ export default class CardsTable extends DataTable {
   constructor() {
     super();
     this.data = initialCardsData;
-    this.currentId = this.data[0].id;
-    this.lastId = this.data[this.data.length - 1].id;
+    if (this.data.length > 0) {
+      this.currentId = this.data[0].id;
+      this.lastId = getMaxObjectInArray(this.data, "id").id;
+    }
 
     makeObservable(this, {
       data: observable,
@@ -37,7 +39,7 @@ export default class CardsTable extends DataTable {
       name: name,
       description: "",
       cardListId: cardListId,
-      order: this.getLastCardOrderInCardList(cardListId),
+      order: this.getLastCardOrderInCardList(cardListId) + 1,
       createdAt: new Date().getTime(),
       createdBy: userId,
       dueTo: dueTo,

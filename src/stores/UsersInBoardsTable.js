@@ -1,14 +1,17 @@
 import { observable, computed, action, makeObservable } from "mobx";
 import { DataTable } from "./DataTable";
 import { initialUsersInBoardsData } from "./initialData";
+import { getMaxObjectInArray } from "../utils/arrays";
 
 export class UsersInBoardsTable extends DataTable {
   constructor() {
     super();
 
     this.data = initialUsersInBoardsData;
-    this.currentId = this.data[0].id;
-    this.lastId = this.data[this.data.length - 1].id;
+    if (this.data.length > 0) {
+      this.currentId = this.data[0].id;
+      this.lastId = getMaxObjectInArray(this.data, "id").id;
+    }
 
     makeObservable(this, {
       data: observable,
