@@ -7,8 +7,11 @@ export class UsersTable extends DataTable {
   constructor() {
     super();
     this.data = initialUsersData;
-    this.currentId = this.data[0].id; // it doesn't use dynamic data from Users.js -> play with index [0-1-2]
-    this.lastId = getMaxObjectInArray(this.data, "id").id;
+    // it doesn't use dynamic data from Users.js -> play with index [0-1-2]
+    if (this.data.length > 0) {
+      this.currentId = this.data[0].id;
+      this.lastId = getMaxObjectInArray(this.data, "id").id;
+    }
 
     makeObservable(this, {
       data: observable,

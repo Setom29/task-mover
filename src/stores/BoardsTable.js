@@ -9,7 +9,9 @@ export class BoardsTable extends DataTable {
     super();
     this.data = initialBoardsData;
     this.currentId = null;
-    this.lastId = getMaxObjectInArray(this.data, "id").id;
+    if (this.data.length > 0) {
+      this.lastId = getMaxObjectInArray(this.data, "id").id;
+    } 
     this.usersInBoards = usersInBoards;
 
     makeObservable(this, {
