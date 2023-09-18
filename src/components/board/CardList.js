@@ -5,15 +5,15 @@ import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 import Card from "./Card";
 import AddCardComponent from "./AddCardComponent ";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useDrag, useDrop } from "react-dnd";
-import {dragTypeCardList} from "../../utils/constants";
+import { dragTypeCardList } from "../../utils/constants";
 // import { resetGlobalState } from "mobx/dist/internal";
 
 const CardList = inject(
-    "cardListsTable",
-    "cardsTable"
+  "cardListsTable",
+  "cardsTable"
 )(
   observer((props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,7 +28,7 @@ const CardList = inject(
 
     const open = Boolean(anchorEl);
 
-    const [{isSomethingDropping}, drop] = useDrop({
+    const [{ isSomethingDropping }, drop] = useDrop({
       accept: dragTypeCardList,
 
       collect: (monitor) => {
@@ -38,15 +38,18 @@ const CardList = inject(
       },
 
       drop: (item) => {
-        const insertAfterCardListId = props.cardListsTable.getPrevCardListIdInSameBoard(props.cardListId);
+        const insertAfterCardListId =
+          props.cardListsTable.getPrevCardListIdInSameBoard(props.cardListId);
         if (item.cardListId === insertAfterCardListId) return; // no drop on itself
-        props.cardListsTable.moveCardList(item.cardListId, insertAfterCardListId);
+        props.cardListsTable.moveCardList(
+          item.cardListId,
+          insertAfterCardListId
+        );
       },
-
     });
-  
-      // useDrag will be responsible for making an element draggable. 
-      // It also exposes isDragging method to add any styles while dragging
+
+    // useDrag will be responsible for making an element draggable.
+    // It also exposes isDragging method to add any styles while dragging
     const [{ isDragging }, drag] = useDrag(() => ({
       type: dragTypeCardList,
       item: { cardListId: props.cardListId },
@@ -59,27 +62,29 @@ const CardList = inject(
     }));
 
     return (
-      <Box 
-        ref={(node) => drag(drop(node))} 
+      <Box
+        ref={(node) => drag(drop(node))}
         sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "start",
           alignItems: "start",
-          height: "fit-content"
-        }} >
+          height: "fit-content",
+        }}
+      >
         {/* first part is an empty box that imitates empty space for dropping, if isSomethingDropping */}
-        {isSomethingDropping ?
+        {isSomethingDropping ? (
           <Box
-          sx={{
-            gap: "5px",
-            width: "200px",
-            height: "100%",
-            padding: "5px",
-            bgcolor: "transparent",
-            borderRadius: "5px",
-          }} />
-          : null}
+            sx={{
+              gap: "5px",
+              width: "200px",
+              height: "100%",
+              padding: "5px",
+              bgcolor: "transparent",
+              borderRadius: "5px",
+            }}
+          />
+        ) : null}
         <Box
           sx={{
             flexDirection: "column",
@@ -103,19 +108,24 @@ const CardList = inject(
               {props.cardListsTable.getItemById(props.cardListId).name}
             </Typography>
             <IconButton onClick={handleClick}>
-              <CloseIcon sx={{ color: "transparent.contrastText" }}/>
+              <CloseIcon sx={{ color: "transparent.contrastText" }} />
             </IconButton>
           </Box>
           {/* filter cards by cardListId and display them in the correct order */}
-          {[
-            ...props.cardsTable.data.filter(
-              (card) => card.cardListId === props.cardListId
-            ),
-          ]
-            .sort((a, b) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0)
-            .map((card, index) => (
-              <Card key={card.id} cardId={card.id} />
-            ))}
+          <Box className="no-scrollbar" sx={{display: "flex", flexDirection: "column", gap: "5px", overflow: "auto", maxHeight: "58vh" }}>
+            {[
+              ...props.cardsTable.data.filter(
+                (card) => card.cardListId === props.cardListId
+              ),
+            ]
+              .sort((a, b) =>
+                a.order < b.order ? -1 : a.order > b.order ? 1 : 0
+              )
+              .map((card, index) => (
+                <Card key={card.id} cardId={card.id} />
+              ))}
+          </Box>
+
           <AddCardComponent cardListId={props.cardListId} />
           <Popover
             open={open}
@@ -129,7 +139,9 @@ const CardList = inject(
           >
             <Box sx={{ backgroundColor: "yellow.light", padding: "10px" }}>
               <Typography sx={{ textAlign: "center" }}>Delete list?</Typography>
-              <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Toolbar
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
                 <IconButton
                   onClick={() => {
                     props.cardListsTable.deleteCardList(props.cardListId);

@@ -14,10 +14,10 @@ const Comment = inject(
                 flexDirection: "row",
                 justifyContent: 'space-between',
                 padding: "5px",
-                color: "blue.dark",
+                color: "yellow.contrastText",
                 fontSize: "100%",
                 borderRadius: "5px",
-                bgcolor: "transparent.light",
+                bgcolor: "yellow.light",
                 boxShadow: 2,
 
             }}>

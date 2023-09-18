@@ -71,7 +71,7 @@ const CardModal = inject(
               gap: "10px",
               flexDirection: "column",
               width: "48%",
-              backgroundColor: "blue.contrastText",
+              backgroundColor: "yellow.light",
               borderRadius: "5px",
               p: 4,
             }}
@@ -80,7 +80,7 @@ const CardModal = inject(
               id="outlined-multiline-static"
               label="Title"
               multiline
-              rows={3}
+              rows={4}
               value={currentCard.name}
               onChange={(e) =>
                 setCurrentCard({ ...currentCard, name: e.target.value })
@@ -89,7 +89,7 @@ const CardModal = inject(
               sx={{
                 height: "100%",
                 backgroundColor: "transparent.light",
-                boxShadow: 2,
+                borderRadius: "5px",
               }}
             />
 
@@ -115,7 +115,7 @@ const CardModal = inject(
               flexDirection: "column",
               gap: "10px",
               width: "48%",
-              backgroundColor: "blue.contrastText",
+              backgroundColor: "yellow.light",
               borderRadius: "5px",
               p: 4,
             }}
@@ -123,7 +123,7 @@ const CardModal = inject(
             <CommentsList cardId={props.modalStateStore.currentCardId} />
             <TextField
               sx={{
-                backgroundColor: "transparent.contrastText",
+                backgroundColor: "transparent.dark",
               }}
               variant="outlined"
               placeholder="Enter your comment:"

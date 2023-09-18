@@ -19,7 +19,7 @@ const CommentsList = inject("commentsTable")(
           flexDirection: "column",
           gap: "5px",
           borderRadius: "5px",
-          backgroundColor: "transparent.light",
+          backgroundColor: "transparent.dark",
           boxShadow: 2,
           flexGrow: 1,
           overflow: "auto",
