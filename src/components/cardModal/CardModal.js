@@ -5,7 +5,6 @@ import {
   InputAdornment,
   Modal,
   TextField,
-  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import CommentsList from "./CommentsList";
@@ -25,6 +24,27 @@ const CardModal = inject(
     );
     const [newComment, setNewComment] = useState("");
 
+    const handleOK = function () {
+      props.commentsTable.addComment(
+        newComment,
+        props.usersTable.currentItem.id,
+        props.modalStateStore.currentCardId
+      );
+      setNewComment("");
+    };
+
+    const handleCancel = function () {
+      setNewComment("");
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        handleOK();
+      } else if (event.key === "Escape") {
+        handleCancel();
+      }
+    };
+
     return (
       <Modal
         open={open}
@@ -36,12 +56,13 @@ const CardModal = inject(
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
             backgroundColor: "shades.main",
             boxShadow: 24,
             p: 4,
-            m: 4,
+            margin: "5% 10%",
             borderRadius: "5px",
+            height: "80%",
           }}
         >
           <Box
@@ -50,56 +71,41 @@ const CardModal = inject(
               gap: "10px",
               flexDirection: "column",
               width: "48%",
-              backgroundColor: "blue.contrastText",
+              backgroundColor: "yellow.light",
               borderRadius: "5px",
               p: 4,
             }}
           >
-            <Box sx={{ display: "flex", gap: "10px" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  width: "30%",
-                  height: "100%",
-                  border: "1px solid",
-                  borderColor: "shades.main",
-                  borderRadius: "5px",
-                }}
-              >
-                {/* <Typography>{currentCard.createdAt}</Typography>
-                <Typography>{props.usersTable.getItemById(currentCard.createdBy)}</Typography> */}
-              </Box>
-              <TextField
-                id="outlined-multiline-static"
-                label="Title"
-                multiline
-                rows={3}
-                value={currentCard.name}
-                onChange={(e) =>
-                  setCurrentCard({ ...currentCard, name: e.target.value })
-                }
-                sx={{
-                  height: "100%",
-                  width: "100%",
-                  backgroundColor: "transparent.light",
-                  boxShadow: 2,
-                }}
-              />
-            </Box>
+            <TextField
+              id="outlined-multiline-static"
+              label="Title"
+              multiline
+              rows={4}
+              value={currentCard.name}
+              onChange={(e) =>
+                setCurrentCard({ ...currentCard, name: e.target.value })
+              }
+              color="shades"
+              sx={{
+                height: "100%",
+                backgroundColor: "transparent.light",
+                borderRadius: "5px",
+              }}
+            />
 
             <TextField
               id="outlined-multiline-static"
               label="Description"
               multiline
-              rows={18}
+              rows={12}
               value={currentCard.description}
               onChange={(e) =>
                 setCurrentCard({ ...currentCard, description: e.target.value })
               }
+              color="shades"
               sx={{
                 height: "100%",
                 backgroundColor: "transparent.light",
-                boxShadow: 2,
               }}
             />
           </Box>
@@ -109,7 +115,7 @@ const CardModal = inject(
               flexDirection: "column",
               gap: "10px",
               width: "48%",
-              backgroundColor: "blue.contrastText",
+              backgroundColor: "yellow.light",
               borderRadius: "5px",
               p: 4,
             }}
@@ -117,12 +123,14 @@ const CardModal = inject(
             <CommentsList cardId={props.modalStateStore.currentCardId} />
             <TextField
               sx={{
-                backgroundColor: "transparent.contrastText",
+                backgroundColor: "transparent.dark",
               }}
               variant="outlined"
               placeholder="Enter your comment:"
               value={newComment}
+              onKeyDown={handleKeyDown}
               onChange={(e) => setNewComment(e.target.value)}
+              color="shades"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

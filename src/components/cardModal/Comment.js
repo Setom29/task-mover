@@ -14,19 +14,17 @@ const Comment = inject(
                 flexDirection: "row",
                 justifyContent: 'space-between',
                 padding: "5px",
-                color: "blue.dark",
+                color: "yellow.contrastText",
                 fontSize: "100%",
                 borderRadius: "5px",
-                bgcolor: "transparent.light",
-                paddingInlineEnd: 2,
-                paddingInlineStart: 2,
+                bgcolor: "yellow.light",
                 boxShadow: 2,
 
             }}>
                 <Typography variant="caption" sx={{
                     overflowWrap: 'break-word',
                     wordWrap: 'break-word',
-                    width: 350,
+                    width: "80%",
                 }}>
                     {props.commentsTable.getItemById(props.commentId).text}
                 </Typography>
