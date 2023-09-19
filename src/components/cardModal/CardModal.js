@@ -10,6 +10,7 @@ import React, {useState} from "react";
 import CommentsList from "./CommentsList";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CloseIcon from '@mui/icons-material/Close';
 
 const CardModal = inject(
     "modalStateStore",
@@ -46,12 +47,22 @@ const CardModal = inject(
             }
         };
 
+        const handleCloseModal = () => {
+            toggle(props.modalStateStore.currentCardId);
+        }
+
+        const handleDeleteCard = () => {
+            props.commentsTable.deleteComment(props.modalStateStore.currentCardId)
+            props.cardsTable.deleteCard(props.modalStateStore.currentCardId)
+            handleCloseModal()
+        }
+
         return (
             <Modal
                 open={open}
                 onClose={() => {
                     props.cardsTable.editItem({...currentCard});
-                    toggle(props.modalStateStore.currentCardId);
+                    handleCloseModal()
                 }}
             >
                 <Box
@@ -59,10 +70,10 @@ const CardModal = inject(
                         p: 4,
                         margin: "5% 10%",
                         borderRadius: "5px",
-                        height: "auto",
                         backgroundColor: "shades.main",
                         boxShadow: 24,
-                        position: "relative"
+                        position: "relative",
+                        height: "70%"
                     }}
                 >
                     <IconButton aria-label="delete"
@@ -74,6 +85,20 @@ const CardModal = inject(
                                     color: "transparent.contrastText"
                                 }}
                                 size="large"
+                                onClick={() => handleCloseModal()}
+                    >
+                        <CloseIcon fontSize="inherit"/>
+                    </IconButton>
+                    <IconButton aria-label="delete"
+                                sx={{
+                                    position: "absolute",
+                                    top: 60,
+                                    right: 5,
+                                    zIndex: 2500,
+                                    color: "transparent.contrastText"
+                                }}
+                                size="large"
+                                onClick={handleDeleteCard}
                     >
                         <DeleteIcon fontSize="inherit"/>
                     </IconButton>
@@ -82,18 +107,19 @@ const CardModal = inject(
                             display: "flex",
                             justifyContent: "space-evenly",
                             p: 1,
+                            height: "100%",
                         }}
                     >
                         <Box
                             sx={{
                                 display: "flex",
-                                gap: "10px",
                                 flexDirection: "column",
-                                height: "auto",
+                                gap: "10px",
                                 width: "48%",
                                 backgroundColor: "yellow.light",
                                 borderRadius: "5px",
                                 p: 4,
+                                overflow: "auto",
                             }}
                         >
                             <TextField
@@ -107,7 +133,7 @@ const CardModal = inject(
                                 }
                                 color="shades"
                                 sx={{
-                                    height: "100%",
+                                    display: "flex",
                                     backgroundColor: "transparent.light",
                                     borderRadius: "5px",
                                 }}
@@ -117,15 +143,16 @@ const CardModal = inject(
                                 id="outlined-multiline-static"
                                 label="Description"
                                 multiline
-                                rows={12}
+                                rows={11}
                                 value={currentCard.description}
                                 onChange={(e) =>
                                     setCurrentCard({...currentCard, description: e.target.value})
                                 }
                                 color="shades"
                                 sx={{
-                                    height: "100%",
+                                    display: "flex",
                                     backgroundColor: "transparent.light",
+                                    borderRadius: "5px",
                                 }}
                             />
                         </Box>

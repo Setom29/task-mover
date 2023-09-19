@@ -24,6 +24,7 @@ const CommentsList = inject("commentsTable")(
           flexGrow: 1,
           overflow: "auto",
           p: 1,
+            height: "70%",
         }}
         className="no-scrollbar"
       >
