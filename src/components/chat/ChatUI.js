@@ -49,7 +49,7 @@ const ChatUI = (props) => {
         height: "400px",
         display: "flex",
         flexDirection: "column",
-        bgcolor: "shades.main",
+        bgcolor: "shades.light",
         position: "relative",
       }}
     >
