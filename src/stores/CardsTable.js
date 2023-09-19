@@ -26,7 +26,8 @@ export default class CardsTable extends DataTable {
       deleteCard: action,
       editItem: action,
       moveCard: action,
-      updateData: action
+      updateData: action,
+      changeStatusIcon: action
     });
   }
 
@@ -43,7 +44,7 @@ export default class CardsTable extends DataTable {
       createdBy: userId,
       dueTo: dueTo,
       assignee: null,
-      status: null,
+      status: 0,
     });
   }
 
@@ -51,12 +52,12 @@ export default class CardsTable extends DataTable {
     const card = this.data.find(card => card.id === cardId);
     console.log(card)
     if (card) {
-      if (card.status === 0) {
-        card.status = 1;
+      if (card.status === -1) {
+        card.status = 0;
       } else if (card.status === 1) {
         card.status = -1;
       } else {
-        card.status = 0;
+        card.status = 1;
       }
     }
   }
