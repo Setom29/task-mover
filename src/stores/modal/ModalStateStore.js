@@ -20,7 +20,7 @@ export default class ModalStateStore {
         } else {
             this.open = true;
             this.currentCardId = cardId;
-            console.log(`togglecardID ${this.currentCardId}`)
+            console.log(`toggleCardID ${this.currentCardId}`)
         }
     }
 }

@@ -298,7 +298,8 @@ export const initialCardsData = [
           "password": "strongPassword"
       },
       "dueTo": null,
-      "assignee": null
+      "assignee": null,
+      "status": 0,
   },
   {
       "id": 3,
@@ -315,7 +316,8 @@ export const initialCardsData = [
           "password": "strongPassword"
       },
       "dueTo": null,
-      "assignee": null
+      "assignee": null,
+      "status": 1,
   },
   {
       "id": 4,
@@ -332,7 +334,8 @@ export const initialCardsData = [
           "password": "strongPassword"
       },
       "dueTo": null,
-      "assignee": null
+      "assignee": null,
+      "status": -1,
   },
   {
       "id": 5,
