@@ -1,14 +1,12 @@
 import {
   computed,
   action,
-  makeAutoObservable,
   makeObservable,
-  observable, when,
+  observable,
 } from "mobx";
 import { DataTable } from "./DataTable";
 import { initialCardsData } from "./initialData";
 import {getMaxObjectInArray} from "../utils/arrays"
-import card from "../components/board/Card";
 
 export default class CardsTable extends DataTable {
   constructor() {
