@@ -39,6 +39,23 @@ const Board = inject("cardListsTable")(
             height: "calc(100vh - 140px)",
             overflowX: "auto",
             padding: "20px 15px",
+            '&::-webkit-scrollbar': {
+              height: '0.5em',
+            },
+            '&::-webkit-scrollbar-track': {
+              boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+              webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'shades.light',
+              outline: '1px solid slategrey'
+            },
+            '&::-webkit-scrollbar-track-piece': {
+              backgroundColor: 'shades.contrastText'
+            },
+            scrollbarWidth: '0.25em',
+            scrollbarColor: 'shades.light'
+          
           }}
         >
           <Box
