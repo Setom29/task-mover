@@ -1,7 +1,6 @@
 import {
   computed,
   action,
-  makeAutoObservable,
   makeObservable,
   observable,
 } from "mobx";
@@ -44,7 +43,22 @@ export default class CardsTable extends DataTable {
       createdBy: userId,
       dueTo: dueTo,
       assignee: null,
+      status: null,
     });
+  }
+
+  changeStatusIcon(cardId) {
+    const card = this.data.find(card => card.id === cardId);
+    console.log(card)
+    if (card) {
+      if (card.status === 0) {
+        card.status = 1;
+      } else if (card.status === 1) {
+        card.status = -1;
+      } else {
+        card.status = 0;
+      }
+    }
   }
 
   deleteCard(id) {
