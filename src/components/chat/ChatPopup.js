@@ -24,8 +24,9 @@ export default function ChatPopup(props) {
         bottom: 20,
         right: 20,
         backgroundColor: "shades.main",
-        borderRadius: "5px",
+        borderRadius: "10px",
         overflow: "hidden",
+        boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.3)"
       }}
     >
       <Toolbar

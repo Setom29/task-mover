@@ -59,10 +59,10 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     button: {
-      main: "rgba(0, 0, 0, 0.5)",
-      light: "rgba(0, 0, 0, 0.3)",
-      dark: "rgba(0, 0, 0, 0.7)",
-      contrastText: "rgba(255, 255, 255, 0.9)",
+      main: "rgba(255, 255, 255, 0.8)",
+      light: "rgba(255, 255, 255, 0.9)",
+      dark: "rgba(255, 255, 255, 0.7)",
+      contrastText: "rgba(255, 255, 255, 0.4)",
     },
   },
 });

@@ -88,7 +88,7 @@ const Card = inject("cardsTable", "modalStateStore")(
                      }}
                 >
                     <Typography component="div" variant="caption"
-                                noWrap sx={{
+                                 sx={{
                         display: "flex",
                         color: "shades.dark",
                         gap: "3px",

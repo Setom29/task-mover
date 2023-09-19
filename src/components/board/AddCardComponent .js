@@ -1,4 +1,4 @@
-import { Button, IconButton, TextareaAutosize } from "@mui/material";
+import { Button, IconButton, TextField, TextareaAutosize } from "@mui/material";
 import { Box } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DoneIcon from "@mui/icons-material/Done";
@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { observer, inject } from "mobx-react";
 import { useState } from "react";
 
-import {dragTypeCard} from "../../utils/constants";
+import { dragTypeCard } from "../../utils/constants";
 import { useDrag, useDrop } from "react-dnd";
 
 const AddCardComponent = inject(
@@ -17,32 +17,30 @@ const AddCardComponent = inject(
     const [open, setOpen] = useState(false);
     const [newCardName, setNewCardName] = useState("");
 
-    const handleOK = function() {
-        props.cardsTable.addCard(
-          newCardName,
-          props.cardListId,
-          props.usersTable.currentItem
-        );
-        setOpen(false);
-        setNewCardName("");
-    }
-
-    const handleCancel = function() {
+    const handleOK = function () {
+      props.cardsTable.addCard(
+        newCardName,
+        props.cardListId,
+        props.usersTable.currentItem
+      );
       setOpen(false);
       setNewCardName("");
-    }
+    };
 
+    const handleCancel = function () {
+      setOpen(false);
+      setNewCardName("");
+    };
 
     const handleKeyDown = (event) => {
-      if (event.key === 'Enter'  && event.ctrlKey) {
+      if (event.key === "Enter" && event.ctrlKey) {
         handleOK();
-      } else if (event.key === 'Escape') {
+      } else if (event.key === "Escape") {
         handleCancel();
       }
     };
 
-
-    const [{isSomethingDropping}, drop] = useDrop({
+    const [{ isSomethingDropping }, drop] = useDrop({
       accept: dragTypeCard,
 
       collect: (monitor) => {
@@ -53,29 +51,34 @@ const AddCardComponent = inject(
 
       drop: (item) => {
         const newCardListId = props.cardListId;
-        const insertAfterCardId = props.cardsTable.getLastCardIdInCardList(props.cardListId);
+        const insertAfterCardId = props.cardsTable.getLastCardIdInCardList(
+          props.cardListId
+        );
         if (item.cardId === insertAfterCardId) return; // no drop on itself
-        props.cardsTable.moveCard(item.cardId, newCardListId, insertAfterCardId);
+        props.cardsTable.moveCard(
+          item.cardId,
+          newCardListId,
+          insertAfterCardId
+        );
       },
-
     });
 
     return (
       <Box ref={(node) => drop(node)}>
         {/* first part is an empty box that imitates empty space for dropping, if isSomethingDropping */}
-        {isSomethingDropping ? 
+        {isSomethingDropping ? (
           <Box
             sx={{
               padding: "5px",
               borderRadius: "5px",
-              backgroundColor: "green", 
+              backgroundColor: "green",
               color: "transparent.main",
               width: "100%",
               height: "3em",
             }}
-          /> 
-          : null}
-          <Box
+          />
+        ) : null}
+        <Box
           sx={{
             width: "100%",
             heigth: "1em",
@@ -89,12 +92,30 @@ const AddCardComponent = inject(
         >
           {open ? (
             <Box>
-              <TextareaAutosize
+              <TextField
+                multiline
+                maxRows={5}
                 onChange={(e) => setNewCardName(e.target.value)}
                 onKeyDown={handleKeyDown}
                 value={newCardName}
+                variant="outlined"
                 autoFocus
+                color="lights"
                 sx={{
+                  color: "lights.light",
+                  "& .MuiInputBase-root": {
+                    color: "lights.light",
+                  },
+                  ".MuiOutlinedInput-notchedOutline": {
+                    borderColor: "lights.light",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "lights.light",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "lights.light",
+                  },
+                  resize: "none",
                   padding: "5px",
                   borderRadius: "5px",
                   color: "yellow",
@@ -104,17 +125,13 @@ const AddCardComponent = inject(
               />
               <Box sx={{ display: "flex", justifyContent: "space-around" }}>
                 <IconButton
-                  variant="contained"
                   disabled={newCardName === ""}
                   onClick={handleOK}
                 >
-                  <DoneIcon sx={{ color: "transparent.contrastText" }} />
+                  <DoneIcon color="button" />
                 </IconButton>
-                <IconButton
-                  variant="contained"
-                  onClick={handleCancel}
-                >
-                  <CloseIcon sx={{ color: "transparent.contrastText" }} />
+                <IconButton color="button"  onClick={handleCancel}>
+                  <CloseIcon/>
                 </IconButton>
               </Box>
             </Box>

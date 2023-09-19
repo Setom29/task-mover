@@ -6,7 +6,10 @@ import {
   Select,
   Typography,
   Box,
+  OutlinedInput,
 } from "@mui/material";
+
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const BoardsSelect = inject(
   "boardsTable",
@@ -32,19 +35,32 @@ const BoardsSelect = inject(
       <Box>
         {availableBoards.length !== 0 ? (
           <FormControl fullWidth color="lights">
-            <InputLabel id="board-select-label" color="lights">Board</InputLabel>
+            <InputLabel id="board-select-label"  sx={{color:"lights.main"}}>Board</InputLabel>
             <Select
-              labelId="board-select-label"
-              id="board-select"
+              labelStyle={{ color: "lights.contrastText" }}
+              sx={{
+                color: "lights.light",
+                ".MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.main",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.main",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.light",
+                },
+                ".MuiSvgIcon-root ": {
+                  fill: "white !important",
+                },
+              }}
               value={props.boardsTable.currentId ?? ""}
-              label="Board"
               onChange={handleChange}
-              color="lights"
+              input={<OutlinedInput label="Board" />}
             >
               {availableBoards.map((boardId) => {
                 const board = props.boardsTable.getItemById(boardId);
                 return (
-                  <MenuItem value={board.id} key={board.id} color="lights">
+                  <MenuItem value={board.id} key={board.id}>
                     {board.name}
                   </MenuItem>
                 );
@@ -52,11 +68,7 @@ const BoardsSelect = inject(
             </Select>
           </FormControl>
         ) : (
-          <Typography
-            variant="p"
-            color="lights.light"
-            textAlign="center"
-          >
+          <Typography variant="p" color="lights.light" textAlign="center">
             No boards available
           </Typography>
         )}
