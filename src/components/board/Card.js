@@ -79,7 +79,7 @@ const Card = inject("cardsTable", "modalStateStore")(
             textOverflow: "ellipsis"
           }}
         >
-          <Typography component="div" variant="caption" noWrap sx={{color: "shades.dark"}}>
+          <Typography component="div" variant="caption" sx={{color: "shades.dark"}}>
             {props.cardsTable.getItemById(props.cardId).name}
           </Typography>
         </Box>

@@ -22,7 +22,7 @@ const AppHeader = inject("usersTable")(
           <Box
             component="div"
             sx={{
-              width: "40%",
+              width: "50%",
               display: "grid",
               gridTemplateColumns: "auto 1fr 1fr",
               gap: "5px",

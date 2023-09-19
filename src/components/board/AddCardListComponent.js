@@ -52,7 +52,7 @@ const AddCardListComponent = inject(
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
             <TextField
-              color="shades"
+              color="lights"
               variant="outlined"
               autoFocus
               onChange={(e) => setCardListName(e.target.value)}
@@ -60,6 +60,21 @@ const AddCardListComponent = inject(
               value={cardListName}
               size="small"
               placeholder="List name"
+              sx={{
+                color: "lights.light",
+                "& .MuiInputBase-root": {
+                  color: "lights.light",
+                },
+                ".MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.light",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.light",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "lights.light",
+                },
+              }}
             />
             <Box
               sx={{
@@ -71,11 +86,13 @@ const AddCardListComponent = inject(
               <IconButton
                 disabled={cardListName === ""}
                 onClick={handleOK}
+                color="button"
               >
                 <SendIcon />
               </IconButton>
               <IconButton
                 onClick={handleCancel}
+                color="button"
               >
                 <CloseIcon />
               </IconButton>

@@ -57,7 +57,7 @@ const CardModal = inject(
           sx={{
             display: "flex",
             justifyContent: "space-evenly",
-            backgroundColor: "shades.main",
+            backgroundColor: "yellow.light",
             boxShadow: 24,
             p: 4,
             margin: "5% 10%",
