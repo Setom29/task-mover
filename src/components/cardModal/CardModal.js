@@ -73,7 +73,7 @@ const CardModal = inject(
                         backgroundColor: "shades.main",
                         boxShadow: 24,
                         position: "relative",
-                        height: "70%"
+                        height: "80vh"
                     }}
                 >
                     <IconButton aria-label="delete"
