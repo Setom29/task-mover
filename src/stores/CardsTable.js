@@ -6,7 +6,7 @@ import {
 } from "mobx";
 import { DataTable } from "./DataTable";
 import { initialCardsData } from "./initialData";
-import {getMaxObjectInArray} from "../utils/arrays"
+import {getMaxObjectInArray, getMinObjectInArray} from "../utils/arrays"
 
 export default class CardsTable extends DataTable {
   constructor() {
@@ -90,6 +90,17 @@ export default class CardsTable extends DataTable {
     }
   }
 
+  getFirstCardOrderInCardList(cardListId) {
+    const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
+    if (arrFilteredCardList.length === 0) {
+      return -1;
+    } else 
+    {
+      const cardToReturn = getMinObjectInArray(arrFilteredCardList, "order");
+      return cardToReturn.order;
+    }
+  }
+
   getLastCardOrderInCardList(cardListId) {
     const arrFilteredCardList = this.data.filter(card => card.cardListId === cardListId);
     if (arrFilteredCardList.length === 0) {
@@ -112,47 +123,39 @@ export default class CardsTable extends DataTable {
 
     const cardToMove = this.getItemById(cardId);
     const oldCardListId = cardToMove.cardListId; 
-    if (oldCardListId === newCardListId) {
-      if (insertAfterCardId === null) {
-        cardToMove.order = Math.min(...this.data
-                          .filter(card => card.cardListId === oldCardListId)
-                          .map(card => card.order)) - 1;
-        console.log("same list, insert in beginning")
+    if (insertAfterCardId === null) {
+      // insert in start of list; does not depend whether it's same list or different list
+      cardToMove.order = this.getFirstCardOrderInCardList(newCardListId) - 1;
+    } else if (oldCardListId === newCardListId) {
+      // move within the same list, insert anywhere except start
+      const moveForward = (this.getItemById(insertAfterCardId).order > cardToMove.order);
+      let newOrder;
+      if (moveForward) {
+        newOrder = this.getItemById(insertAfterCardId).order;
+        this.data.filter(card => card.cardListId === oldCardListId && 
+          card.order <= newOrder && 
+          card.order > cardToMove.order)
+                  .forEach(card => card.order--);
+        console.log("same list, insert in middle, move forward")
       } else {
-        const moveForward = (this.getItemById(insertAfterCardId).order > cardToMove.order);
-        let newOrder;
-        if (moveForward) {
-          newOrder = this.getItemById(insertAfterCardId).order;
-          this.data.filter(card => card.cardListId === oldCardListId && 
-            card.order <= newOrder && 
-            card.order > cardToMove.order)
-                    .forEach(card => card.order--);
-          console.log("same list, insert in middle, move forward")
-        } else {
-          newOrder = this.getItemById(insertAfterCardId).order + 1;
-          this.data.filter(card => card.cardListId === oldCardListId && 
-            card.order >= newOrder && 
-            card.order < cardToMove.order)
-                    .forEach(card => card.order++);
-          console.log("same list, insert in middle, move backward")
-        }
-        cardToMove.order = newOrder;
-      }
-    } else {
-      if (insertAfterCardId === null) {
-        cardToMove.order = Math.min(...this.data
-                          .filter(card => card.cardListId === newCardListId)
-                          .map(card => card.order)) - 1;
-        console.log("diff list, insert in beginning")
-      } else {
-        const newOrder = this.getItemById(insertAfterCardId).order + 1;
-        this.data.filter(card => card.cardListId === newCardListId && 
-                                  card.order >= newOrder)
+        newOrder = this.getItemById(insertAfterCardId).order + 1;
+        this.data.filter(card => card.cardListId === oldCardListId && 
+          card.order >= newOrder && 
+          card.order < cardToMove.order)
                   .forEach(card => card.order++);
-        cardToMove.order = newOrder;
-        console.log("diff list, insert in middle")
-        }
-      cardToMove.cardListId = newCardListId;
+        console.log("same list, insert in middle, move backward")
+      }
+      cardToMove.order = newOrder;
+    } else {
+      // move to different list, insert anywhere except start
+      const newOrder = this.getItemById(insertAfterCardId).order + 1;
+      this.data.filter(card => card.cardListId === newCardListId && 
+                                card.order >= newOrder)
+                .forEach(card => card.order++);
+      cardToMove.order = newOrder;
+      console.log("diff list, insert in middle")
     }
+    // in any case write newCardListId - if newCardListId === oldCardListId nothing happens     
+    cardToMove.cardListId = newCardListId;
   }
 }

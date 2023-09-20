@@ -7,7 +7,7 @@ import {
 } from "mobx";
 import { DataTable } from "./DataTable";
 import { initialCardListsData } from "./initialData";
-import { getMaxObjectInArray } from "../utils/arrays";
+import {getMaxObjectInArray, getMinObjectInArray} from "../utils/arrays"
 
 export default class CardListsTable extends DataTable {
   constructor() {
@@ -71,6 +71,17 @@ export default class CardListsTable extends DataTable {
     }
   }
 
+  getFirstCardListOrderInBoard(boardId) {
+    const arrFiltered = this.data.filter(cardList => cardList.boardId === boardId);
+    if (arrFiltered.length === 0) {
+      return -1;
+    } else 
+    {
+      const cardListToReturn = getMinObjectInArray(arrFiltered, "order");
+      return cardListToReturn.order;
+    }
+  }
+
   getLastCardListOrderInBoard(boardId) {
     const arrFiltered = this.data.filter(cardList => cardList.boardId === boardId);
     if (arrFiltered.length === 0) {
@@ -94,9 +105,7 @@ export default class CardListsTable extends DataTable {
 
     const cardListToMove = this.getItemById(cardListId);
       if (insertAfterCardListId === null) {
-        cardListToMove.order = Math.min(...this.data
-                          .filter(cardList => cardList.boardId === cardListToMove.boardId)
-                          .map(card => card.order)) - 1;
+        cardListToMove.order = this.getFirstCardListOrderInBoard(cardListToMove.boardId) - 1;
         console.log("insert cardList in beginning")
       } else {
         const moveForward = (this.getItemById(insertAfterCardListId).order > cardListToMove.order);
