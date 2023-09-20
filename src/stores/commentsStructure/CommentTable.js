@@ -47,7 +47,7 @@ export default class CommentTable extends DataTable {
     //     this.currentItem.text = text
     // }
 
-    deleteComment(id) {
-        this.data = this.data.filter((comment) => comment.id !== id);
+    deleteComment(cardId) {
+        this.data = this.data.filter((comment) => comment.card_id !== cardId);
     }
 }
