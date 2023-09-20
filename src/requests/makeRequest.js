@@ -9,7 +9,7 @@ export async function makeRequest(key, messages, setMessages) {
     .create({
       messages: [{ role: "user", content: messages[messages.length - 1].text }],
       model: "gpt-3.5-turbo",
-      max_tokens: 10,
+      max_tokens: 500,
       temperature: 0.7,
     })
     .catch((err) => console.log(err));
